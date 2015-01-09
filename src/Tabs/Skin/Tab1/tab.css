@@ -1,0 +1,86 @@
+﻿.tabpage
+{
+    border-left:1px solid #C9CCCF; 
+	border-top:1px solid #C9CCCF;
+	border-bottom:1px solid #C9CCCF; 
+	border-right:1px solid #C9CCCF;
+	background-color:#FFFFFF;
+}
+
+body,td,th 
+{
+	font-size: 12px;
+	font: 12px tahoma,verdana;
+}
+
+.tabTitleFoucs_l
+{
+    background : url(tabtitlefoucs.gif); background-position:left bottom; height:21px; width:23px;
+}
+.tabTitleFoucs_m
+{
+    background : url(tabtitlefoucs_bg.gif); 
+    color: #2F79C1;	 
+    cursor:default;
+    text-indent:5px;
+    padding-right:3px;
+    font-size:12px;
+    font-weight:bold;
+}
+.tabTitleFoucs_r
+{
+    background : url(tabtitlefoucs.gif); background-position:right bottom; height:21px; width:2px;
+}
+
+.tabTitleUnFoucs_l
+{
+    background : url(tabtitleunfoucs.gif); background-position:left bottom; height:21px; width:23px;
+}
+.tabTitleUnFoucs_m
+{
+    background : url(tabtitleunfoucs_bg.gif); 
+    cursor:pointer;
+    text-indent:5px;
+    padding-right:3px;
+    color: #000000;
+    font-size:12px;
+}
+.tabTitleUnFoucs_r
+{
+    background : url(tabtitleunfoucs.gif); background-position:right bottom; height:21px; width:2px;
+}
+
+
+.ContextMenu
+{
+	visibility:hidden;
+	border-left:1px solid #7E7E81; 
+	border-top:1px solid #7E7E81;
+	border-bottom:1px solid #7E7E81; 
+	border-right:1px solid #7E7E81;
+	background:#FFFF80; 
+	padding:0px; overflow:hidden; 
+	position:absolute; left:1px; 
+    cursor:pointer;
+}
+
+
+.rightMenuItem1
+{
+    background : url(icon1.gif) no-repeat; background-position:left; height:18px; width:70px;
+    padding-left:26px;
+    top:0px; left:0px;
+	color:#1F336B;
+}
+.rightMenuItem2
+{
+    background : url(icon2.gif) no-repeat; background-position:left; height:18px; 
+    padding-left:26px;
+    color:#1F336B;
+}
+.rightMenuItem3
+{
+    background : url(icon3.gif) no-repeat; background-position:left; height:18px; 
+    padding-left:26px;
+    color:#1F336B;
+}

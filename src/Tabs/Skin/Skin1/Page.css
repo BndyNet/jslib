@@ -1,0 +1,60 @@
+﻿body 
+{
+	margin:5px;
+    background-color:#F5FBF9;
+    overflow:auto;
+}
+body,td,th 
+{
+	font: 12px tahoma,verdana;
+	color:#1C6078;
+}
+
+A {
+	COLOR: #1C6078;
+}
+A:link {
+	COLOR: #1C6078;
+}
+A:visited {
+	COLOR: #1C6078;
+}
+A.fdleft:hover {
+	COLOR: #1C6078;
+}
+
+.btn{
+cursor:pointer!important;
+cursor:hand;
+background-image:url(bg_btn.gif);
+background-color:#E1F1D4; 
+text-align:center; 
+height:20px; font-size:12px;padding-top:3px;
+ width:50px;
+padding:0px!important;
+border:1px solid #84BD61; 
+color:#005500
+}
+
+.txt
+{
+    BORDER:#84BD61 1px solid;
+	HEIGHT: 20px;
+	FONT: 12px tahoma,verdana; 
+	COLOR:Blue;
+}
+
+select {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; FONT: 12px tahoma,verdana; color:Blue; PADDING-TOP: 1px
+}
+option {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 1px; FONT: 12px tahoma,verdana; PADDING-TOP: 1px; color:Blue;
+}
+
+fieldset
+{
+	BORDER-RIGHT: #c8d9e4 1px solid; BORDER-TOP: #c8d9e4 1px solid; BORDER-LEFT: #c8d9e4 1px solid; BORDER-BOTTOM: #c8d9e4 1px solid;
+}
+legend {
+	FONT-WEIGHT: bold; COLOR: #300E64
+}

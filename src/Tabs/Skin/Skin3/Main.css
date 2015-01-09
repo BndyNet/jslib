@@ -1,0 +1,142 @@
+﻿body 
+{
+    SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; /*滚动条及箭头的亮边色*/
+    SCROLLBAR-SHADOW-COLOR: #cccccc;    /*滚动条及箭头的暗边色*/
+    SCROLLBAR-3DLIGHT-COLOR: #cccccc;   /*滚动条及箭头的3D亮边色*/
+    SCROLLBAR-TRACK-COLOR: #EFEFEF;     /*滚动条底色*/
+    SCROLLBAR-DARKSHADOW-COLOR:#ffffff; /*滚动条及箭头的暗边阴影色*/
+    SCROLLBAR-BASE-COLOR: #f6f6f6;      /*滚动条的基本颜色*/
+    SCROLLBAR-ARROW-COLOR: #000000;     /*箭头的颜色*/
+    SCROLLBAR-FACE-COLOR: #f6f6f6;      /*滚动条及箭头的颜色*/
+	margin:0px;
+	overflow:auto;
+}
+body,td,th 
+{
+	font-size: 12px;
+	font: 12px tahoma,verdana;
+}
+.FRAME
+{
+    width:100%; height:100%;
+}
+
+
+.load
+{
+    position: absolute;
+    background: url(pressbar.gif) no-repeat; background-position:left center; width:199px; height:64px; 
+    border-left:1px solid #6795B4; 
+	border-top:1px solid #6795B4;
+	border-bottom:1px solid #6795B4; 
+	border-right:1px solid #6795B4;
+	background-color:#FFFFFF;
+	left: expression((document.body.offsetWidth - 199)/2);
+	top: expression((document.body.offsetHeight - 64)/2);   
+}
+
+.top
+{
+    background: url(top_bg.jpg) no-repeat; background-position:right;  background-color:#FFFFFF;
+}
+
+.logopic
+{
+    z-index: 100; left: 0px; width: 252px; position: absolute; top: 10px; height: 57px;
+}
+
+.tripbar
+{
+    position:relative; left:5px; width:8px; height:13px; background: url(left.gif);
+}
+
+.menuwidth
+{
+    width:160px;
+}
+
+.menu11
+{
+    background: url(left1.jpg) no-repeat; height: 20px; width:10px;
+}
+.menu12
+{
+    background: url(left11.jpg);
+}
+.menu13
+{
+    background: url(left1.jpg) no-repeat; background-position:right top; width:12px;
+}
+
+
+.menu21
+{
+    background: url(left2.jpg);background-position:left;
+}
+.menu22
+{
+    background-color:#F5FBF9;
+}
+.menu23
+{
+    background: url(left2.jpg);background-position:right; cursor:pointer;
+}
+
+.menu31
+{
+    background: url(left3.jpg); height: 18px; 
+}
+.menu32
+{
+    background: url(left31.jpg);
+}
+.menu33
+{
+    background : url(left3.jpg); background-position:right bottom;
+}
+
+
+.right11
+{
+    background: url(right11.jpg) no-repeat; height: 9px; width:3px;
+}
+.right12
+{
+    background: url(right12.jpg);
+}
+.right13
+{
+    background: url(right13.jpg) no-repeat; background-position:right top; width:5px;
+}
+
+
+.right21
+{
+    background-color:#FFFFFF; cursor:pointer;
+}
+.right22
+{
+    background-color:#FFFFFF;
+}
+.right23
+{
+    background: url(right23.jpg);background-position:right top; 
+}
+
+.right31
+{
+    background: url(right31.jpg); height: 7px;
+}
+.right32
+{
+    background: url(right32.jpg);
+}
+.right33
+{
+    background : url(right33.jpg); background-position:right bottom;
+}
+
+
+
+
+
