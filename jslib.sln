@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src", "http://localhost:5056", "{23ECD33A-FDC9-495A-91F6-869E2BE53A66}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -22,6 +22,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "src", "http://localhost:505
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "src\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{306876B2-B4A0-474B-B453-4EA0035CA7EC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
