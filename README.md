@@ -1,8 +1,8 @@
-## jquery.checkall.js
+## jquery.checkall
 
 Check all for `checkbox`.
 
-Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of icheckAll.
+Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of checkAll.
 
 ### Example
 ```js
@@ -14,3 +14,7 @@ $('#chkAll').checkAll('.child', {
        }
    });
 ```
+
+## jquery.bTree
+
+![](src/jquery.form.validation/screenshot.png)
