@@ -15,6 +15,6 @@ $('#chkAll').checkAll('.child', {
    });
 ```
 
-## jquery.bTree
+## [Form & Validation (UI)](http://bndy.net/html/jquery.form.validation/index.html)
 
 ![](src/jquery.form.validation/screenshot.png)
