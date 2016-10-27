@@ -2,7 +2,7 @@
 
 Check all for `checkbox`.
 
-Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of checkAll.
+Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of `checkAll`.
 
 ### Example
 ```js
