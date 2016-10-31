@@ -1,31 +1,22 @@
-## jquery.checkall
-
-Check all for `checkbox`.
-
-Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of `checkAll`.
-
-### Example
-```js
-$('#chkAll').checkAll('.child', {
-       inverse: true,  // true to reverse the checkbox, otherwise all or none
-       end: function(){
-           var checked = $(this).prop('checked');
-           console.debug(checked ? 'Checked' : 'Unchecked');
-       }
-   });
-```
-
-## [Form & Validation (UI)](http://bndy.net/html/demo_form.html)
-
-![](src/images/demo_form.png)
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo for Dialog</title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="lib/jquery/jquery-1.12.4.min.js"></script>
 
 
-## [Dialog Component](http://bndy.net/html/demo_dialog.html)
+    <link href="lib/bootstrap/v3.3.7/css/bootstrap.css" rel="stylesheet" />
+    <script src="lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
 
-dialogs about alert, success, warn, error, form, iframe and so on.
+    <link href="lib/layer/skin/layer.css" rel="stylesheet" />
+    <script src="lib/layer/layer.js"></script>
+    <script src="js/dialog.js"></script>
+</head>
+<body class="padding">
 
-```html
-  <button class="btn btn-primary"
+    <button class="btn btn-primary"
             onclick="dialog.alert('alert', function () { dialog.alert('callback'); })">
         alert
     </button>
@@ -96,4 +87,9 @@ dialogs about alert, success, warn, error, form, iframe and so on.
             onclick="dialog.tip('dialog.tip', this)">
         tip
     </button>
-```
+
+    <hr />
+
+    <script src="js/_init.js"></script>
+</body>
+</html>
