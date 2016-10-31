@@ -1,5 +1,7 @@
 ## jquery.checkall
 
+**Dependencies:** jQuery
+
 Check all for `checkbox`.
 
 Optional: [iCheck](https://github.com/fronteed/icheck), use `icheckAll` instead of `checkAll`.
@@ -17,10 +19,14 @@ $('#chkAll').checkAll('.child', {
 
 ## [Form & Validation (UI)](http://bndy.net/html/demo_form.html)
 
+**Dependencies:** jQuery, jQuery Validation, Bootstrap
+
 ![](src/images/demo_form.png)
 
 
 ## [Dialog Component](http://bndy.net/html/demo_dialog.html)
+
+**Dependencies:** jQuery, layer
 
 dialogs about alert, success, warn, error, form, iframe and so on.
 
