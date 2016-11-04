@@ -129,18 +129,37 @@
         });
         return layer.open(options);
       },
-      loading: function(second) {
+      loading: function(selector) {
         var options, root;
         root = this;
-        options = $.extend({}, root.options, {
-          time: second * 1000,
-          btn: null,
-          shade: root.options.loadingShade
-        });
-        return layer.load(root.options.loadingIcon, options);
+        if (selector) {
+          $(selector).each(function() {
+            var eleLoading;
+            $(this).children().hide();
+            if ($(this).find('.bn-dialog-loading').length > 0) {
+              return $(this).find('.bn-dialog-loading').show();
+            } else {
+              eleLoading = $('<div class="bn-dialog-loading"><i class="fa fa-spin fa-spinner"></i><span>Loading...</span></div>');
+              return $(this).append($(eleLoading));
+            }
+          });
+        } else {
+          options = $.extend({}, root.options, {
+            btn: null,
+            shade: root.options.loadingShade
+          });
+          layer.load(root.options.loadingIcon, options);
+        }
       },
-      loaded: function() {
-        return layer.closeAll("loading");
+      loaded: function(selector) {
+        if (selector) {
+          $(selector).each(function() {
+            $(this).children().show();
+            return $(this).find('.bn-dialog-loading').remove();
+          });
+        } else {
+          layer.closeAll("loading");
+        }
       }
     };
     return window.dialog = new Dialog();

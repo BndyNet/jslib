@@ -53,9 +53,23 @@
     <hr />
 
     <button class="btn btn-default"
-            onclick="dialog.loading(3)">
+            onclick="dialog.loading()">
         loading
     </button>
+    <br /><br />
+    <div class="panel panel-default" style="width:460px;">
+        <div class="panel-heading">
+            <div class="panel-title">
+                block loading
+                <button class="pull-right btn btn-sm" onclick="dialog.loading('#LoadedData'); setTimeout(function () { dialog.loaded('#LoadedData'); }, 3000);">
+                    Load
+                </button>
+            </div>
+        </div>
+        <div id="LoadedData" class="panel-body">
+            <div>Loaded Data</div>
+        </div>
+    </div>
 
     <hr />
 

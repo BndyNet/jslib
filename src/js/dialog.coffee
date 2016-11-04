@@ -104,17 +104,32 @@
             }
             layer.open options
                 
-        loading: (second) ->
+        loading: (selector) ->
             root = @
-            options = $.extend {}, root.options, {
-                time: second * 1000
-                btn: null,
-                shade: root.options.loadingShade
-            }
-            layer.load root.options.loadingIcon, options
-            
-        loaded: ->
-            layer.closeAll "loading"
+            if selector
+                $(selector).each ->
+                    $(this).children().hide()
+                    if $(this).find('.bn-dialog-loading').length > 0
+                        $(this).find('.bn-dialog-loading').show()
+                    else
+                        eleLoading = $('<div class="bn-dialog-loading"><i class="fa fa-spin fa-spinner"></i><span>Loading...</span></div>')
+                        $(this).append $(eleLoading)
+            else
+                options = $.extend {}, root.options, {
+                    # time: second * 1000
+                    btn: null,
+                    shade: root.options.loadingShade
+                }
+                layer.load root.options.loadingIcon, options
+            return
+        loaded: (selector) ->
+            if selector
+                $(selector).each ->
+                    $(this).children().show()
+                    $(this).find('.bn-dialog-loading').remove()
+            else
+                layer.closeAll "loading"
+            return
                 
     window.dialog = new Dialog()
 ) window
