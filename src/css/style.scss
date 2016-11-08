@@ -4,6 +4,7 @@ $color-error: #ff6a00 !default;
 
 body {
     font-family: 'Microsoft YaHei', Inconsolata, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11px;
 }
 
 .padding {
@@ -135,5 +136,16 @@ form {
         .layui-layer-btn1 {
             border-radius: $border-radius-small;
         }
+    }
+}
+
+/* bn components */
+.bn-dialog-loading {
+    font-style: italic;
+
+    .icon {
+    }
+
+    .text {
     }
 }

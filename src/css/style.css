@@ -1,5 +1,6 @@
 ﻿body {
-  font-family: 'Microsoft YaHei', Inconsolata, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  font-family: 'Microsoft YaHei', Inconsolata, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 11px; }
 
 .padding {
   padding: 15px; }
@@ -78,4 +79,8 @@ form.form-horizontal .form-control.error + label.error {
 
 .layui-layer .layui-layer-btn .layui-layer-btn1 {
   border-radius: 3px; }
+
+/* bn components */
+.bn-dialog-loading {
+  font-style: italic; }
 

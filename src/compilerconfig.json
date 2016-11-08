@@ -14,5 +14,13 @@
   {
     "outputFile": "js/init.js",
     "inputFile": "js/init.coffee"
+  },
+  {
+    "outputFile": "js/tests.js",
+    "inputFile": "js/tests.coffee"
+  },
+  {
+    "outputFile": "js/functions.js",
+    "inputFile": "js/functions.coffee"
   }
 ]

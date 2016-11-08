@@ -139,7 +139,7 @@
             if ($(this).find('.bn-dialog-loading').length > 0) {
               return $(this).find('.bn-dialog-loading').show();
             } else {
-              eleLoading = $('<div class="bn-dialog-loading"><i class="fa fa-spin fa-spinner"></i><span>Loading...</span></div>');
+              eleLoading = $('<div class="bn-dialog-loading"><i class="icon fa fa-spin fa-spinner"></i><span class="text">Loading...</span></div>');
               return $(this).append($(eleLoading));
             }
           });
