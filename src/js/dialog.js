@@ -129,18 +129,25 @@
         });
         return layer.open(options);
       },
-      loading: function(selector) {
-        var options, root;
+      loading: function(selector, options) {
+        var html, root;
         root = this;
         if (selector) {
+          options = $.extend({}, {
+            text: 'Loading...'
+          }, options);
+          html = $('<div class="bn-dialog-loading" style="position:absolute;top:0;left:0;text-align:center;background:rgba(255,255,255,.6);"><i class="icon fa fa-spin fa-spinner"></i><span class="text">' + options.text + '</span></div>');
           $(selector).each(function() {
-            var eleLoading;
-            $(this).children().hide();
+            var h;
             if ($(this).find('.bn-dialog-loading').length > 0) {
               return $(this).find('.bn-dialog-loading').show();
             } else {
-              eleLoading = $('<div class="bn-dialog-loading"><i class="icon fa fa-spin fa-spinner"></i><span class="text">Loading...</span></div>');
-              return $(this).append($(eleLoading));
+              h = html.clone();
+              $(this).css('position', 'relative');
+              h.width($(this).outerWidth());
+              h.height($(this).outerHeight());
+              h.css('padding-top', h.height() / 2 - 10);
+              return $(this).append(h);
             }
           });
         } else {
@@ -154,7 +161,6 @@
       loaded: function(selector) {
         if (selector) {
           $(selector).each(function() {
-            $(this).children().show();
             return $(this).find('.bn-dialog-loading').remove();
           });
         } else {

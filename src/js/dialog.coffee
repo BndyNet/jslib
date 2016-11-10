@@ -104,16 +104,21 @@
             }
             layer.open options
                 
-        loading: (selector) ->
+        loading: (selector, options) ->
             root = @
             if selector
+                options = $.extend {}, {text: 'Loading...'}, options
+                html = $('<div class="bn-dialog-loading" style="position:absolute;top:0;left:0;text-align:center;background:rgba(255,255,255,.6);"><i class="icon fa fa-spin fa-spinner"></i><span class="text">' + options.text + '</span></div>')
                 $(selector).each ->
-                    $(this).children().hide()
                     if $(this).find('.bn-dialog-loading').length > 0
                         $(this).find('.bn-dialog-loading').show()
                     else
-                        eleLoading = $('<div class="bn-dialog-loading"><i class="icon fa fa-spin fa-spinner"></i><span class="text">Loading...</span></div>')
-                        $(this).append $(eleLoading)
+                        h = html.clone()
+                        $(this).css 'position', 'relative'
+                        h.width $(this).outerWidth()
+                        h.height $(this).outerHeight()
+                        h.css 'padding-top', h.height() / 2 - 10
+                        $(this).append h
             else
                 options = $.extend {}, root.options, {
                     # time: second * 1000
@@ -125,7 +130,6 @@
         loaded: (selector) ->
             if selector
                 $(selector).each ->
-                    $(this).children().show()
                     $(this).find('.bn-dialog-loading').remove()
             else
                 layer.closeAll "loading"
