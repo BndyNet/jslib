@@ -82,5 +82,9 @@ form.form-horizontal .form-control.error + label.error {
 
 /* bn components */
 .bn-dialog-loading {
-  font-style: italic; }
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8); }
 

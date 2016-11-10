@@ -1,6 +1,17 @@
-﻿((window)->
+﻿###!
+# dialog v1.0.0
+# http://www.bndy.net
+# 
+# Copyright (c) 2016 Bndy.Net, released under the MIT license
+# 
+# Requires: jQuery, layer
+###
+ 
+((window)->
     if typeof jQuery is 'undefined'
         throw new Error('Dialog component requires jQuery')
+    if typeof layer is 'undefined'
+        throw new Error('Dialog component requires layer')
 
 
     Dialog = ->
@@ -108,7 +119,7 @@
             root = @
             if selector
                 options = $.extend {}, {text: 'Loading...'}, options
-                html = $('<div class="bn-dialog-loading" style="position:absolute;top:0;left:0;text-align:center;background:rgba(255,255,255,.6);"><i class="icon fa fa-spin fa-spinner"></i><span class="text">' + options.text + '</span></div>')
+                html = $('<div class="bn-dialog-loading"><i class="icon fa fa-spin fa-spinner"></i><span class="text">' + options.text + '</span></div>')
                 $(selector).each ->
                     if $(this).find('.bn-dialog-loading').length > 0
                         $(this).find('.bn-dialog-loading').show()
