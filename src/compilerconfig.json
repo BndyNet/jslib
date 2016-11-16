@@ -22,5 +22,9 @@
   {
     "outputFile": "js/functions.js",
     "inputFile": "js/functions.coffee"
+  },
+  {
+    "outputFile": "lib/alertifyjs/css/alertify.css",
+    "inputFile": "lib/alertifyjs/css/alertify.scss"
   }
 ]

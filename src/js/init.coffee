@@ -19,6 +19,6 @@
             tipsTime: 3000
             loadingIcon: 1      #0-2
             loadingShade: [0.6, "#fff"]
-        
+            useAlertify: true
         
     return

@@ -21,7 +21,8 @@
         tips: [1, '#f0ad4e'],
         tipsTime: 3000,
         loadingIcon: 1,
-        loadingShade: [0.6, "#fff"]
+        loadingShade: [0.6, "#fff"],
+        useAlertify: true
       });
     }
   });

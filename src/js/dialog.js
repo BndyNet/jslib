@@ -20,13 +20,24 @@
     }
     Dialog = function() {
       this.VERSION = "1.0.0";
-      this.options = {};
+      this.options = {
+        useAlertify: false,
+        logPosition: "bottom right",
+        closeLogOnClick: false
+      };
       return this.init();
     };
     Dialog.prototype = {
       init: function() {
         if (!$) {
           console.error("jQuery Required");
+        }
+        if (this.options.useAlertify && typeof alertify === "undefined") {
+          console.error("alertify Required");
+        }
+        if (typeof alertify !== "undefined") {
+          alertify.logPosition(this.options.logPosition);
+          alertify.closeLogOnClick(this.options.closeLogOnClick);
         }
       },
       _wrapSize: function(size) {
@@ -43,7 +54,8 @@
         return size;
       },
       set: function(options) {
-        return this.options = $.extend({}, this.options, options);
+        this.options = $.extend({}, this.options, options);
+        return this.init();
       },
       alert: function(msg, callback) {
         var options, root;
@@ -56,29 +68,41 @@
       success: function(msg, callback) {
         var options, root;
         root = this;
-        options = $.extend({}, root.options, {
-          icon: 1,
-          btn: root.options.btn[0]
-        });
-        return layer.alert(msg, options, callback);
+        if (!root.options.useAlertify) {
+          options = $.extend({}, root.options, {
+            icon: 1,
+            btn: root.options.btn[0]
+          });
+          return layer.alert(msg, options, callback);
+        } else {
+          return alertify.success(msg);
+        }
       },
-      warn: function(msg, callback) {
+      info: function(msg, callback) {
         var options, root;
         root = this;
-        options = $.extend({}, root.options, {
-          icon: 0,
-          btn: root.options.btn[0]
-        });
-        return layer.alert(msg, options, callback);
+        if (!root.options.useAlertify) {
+          options = $.extend({}, root.options, {
+            icon: 0,
+            btn: root.options.btn[0]
+          });
+          return layer.alert(msg, options, callback);
+        } else {
+          return alertify.log(msg);
+        }
       },
       error: function(msg, callback) {
         var options, root;
         root = this;
-        options = $.extend({}, root.options, {
-          icon: 2,
-          btn: root.options.btn[0]
-        });
-        return layer.alert(msg, options, callback);
+        if (!root.options.useAlertify) {
+          options = $.extend({}, root.options, {
+            icon: 2,
+            btn: root.options.btn[0]
+          });
+          return layer.alert(msg, options, callback);
+        } else {
+          return alertify.error(msg);
+        }
       },
       confirm: function(msg, fnYes, fnCancel) {
         var options, root;

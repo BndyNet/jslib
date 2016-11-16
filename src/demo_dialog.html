@@ -12,23 +12,25 @@
 
     <link href="lib/layer/skin/layer.css" rel="stylesheet" />
     <script src="lib/layer/layer.js"></script>
+
+    <link href="lib/alertifyjs/css/alertify.css" rel="stylesheet" />
+
     <script src="js/dialog.js"></script>
 
     <link href="css/style.css" rel="stylesheet" />
 </head>
 <body class="padding">
-
     <button class="btn btn-primary"
             onclick="dialog.alert('alert', function () { dialog.alert('callback'); })">
         alert
     </button>
+    <button class="btn btn-info"
+            onclick="dialog.info('info', function () { dialog.alert('callback'); })">
+        info
+    </button>
     <button class="btn btn-success"
             onclick="dialog.success('success', function () { dialog.alert('callback'); })">
         success
-    </button>
-    <button class="btn btn-warning"
-            onclick="dialog.warn('warn', function () { dialog.alert('callback'); })">
-        warn
     </button>
     <button class="btn btn-danger"
             onclick="dialog.error('error', function () { dialog.alert('callback'); })">
@@ -106,6 +108,7 @@
 
     <hr />
 
+    <script src="lib/alertifyjs/js/alertify.js"></script>
     <script src="js/init.js"></script>
 </body>
 </html>

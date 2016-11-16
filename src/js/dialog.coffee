@@ -16,13 +16,22 @@
 
     Dialog = ->
         @.VERSION = "1.0.0"
-        @.options = {}
+        @.options = 
+            useAlertify: false
+            logPosition: "bottom right"
+            closeLogOnClick: false
         @.init()
         
     Dialog.prototype =
         init: ->
             if not $
                 console.error "jQuery Required"
+            if @.options.useAlertify and typeof alertify is "undefined"
+                console.error "alertify Required"
+            
+            if typeof alertify isnt "undefined"
+                alertify.logPosition(@.options.logPosition)
+                alertify.closeLogOnClick(@.options.closeLogOnClick)
             return
             
         _wrapSize: (size) ->
@@ -35,6 +44,7 @@
             
         set: (options) ->
             @.options = $.extend {}, @.options, options
+            @.init()
         
         alert: (msg, callback)  ->
             root = @
@@ -45,25 +55,35 @@
             
         success: (msg, callback) ->
             root = @
-            options = $.extend {}, root.options, {
-                icon: 1
-                btn: root.options.btn[0]
-            }
-            layer.alert msg, options, callback
-        warn: (msg, callback) ->
+            if not root.options.useAlertify
+                options = $.extend {}, root.options, {
+                    icon: 1
+                    btn: root.options.btn[0]
+                }
+                layer.alert msg, options, callback
+            else
+                alertify.success msg
+        info: (msg, callback) ->
             root = @
-            options = $.extend {}, root.options, {
-                icon: 0
-                btn: root.options.btn[0]
-            }
-            layer.alert msg, options, callback
+            if not root.options.useAlertify
+                options = $.extend {}, root.options, {
+                    icon: 0
+                    btn: root.options.btn[0]
+                }
+                layer.alert msg, options, callback
+            else
+                alertify.log msg
+            
         error: (msg, callback) ->
             root = @
-            options = $.extend {}, root.options, {
-                icon: 2
-                btn: root.options.btn[0]
-            }
-            layer.alert msg, options, callback
+            if not root.options.useAlertify
+                options = $.extend {}, root.options, {
+                    icon: 2
+                    btn: root.options.btn[0]
+                }
+                layer.alert msg, options, callback
+            else
+                alertify.error msg
             
         confirm: (msg, fnYes, fnCancel) ->
             root = @
