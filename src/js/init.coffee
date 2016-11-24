@@ -1,10 +1,18 @@
 ﻿$ ->
-    if $ and $.fn.iCheck
-        $("input:checkbox, input:radio").iCheck 
-            checkboxClass: "icheckbox_minimal"
-            radioClass: "iradio_minimal"
-            increaseArea: "20%" # optional
+    # jquery
+    if $
+        if $.fn.iCheck
+            $("input:checkbox, input:radio").iCheck 
+                checkboxClass: "icheckbox_minimal"
+                radioClass: "iradio_minimal"
+                increaseArea: "20%" # optional
+                
+        if $.fn.slimScroll
+            $('.slim-scroll').each ->
+                $(this).slimScroll height: $(this).height()
+            
         
+    # dialog
     if typeof dialog isnt "undefined"
         dialog.set 
             title: "INFO"
