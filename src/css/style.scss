@@ -53,8 +53,12 @@ html, body {
     }
 }
 
-/* jquery validate */
+/* form */
 form {
+    select.form-control {
+        padding-left: 9px;
+    }
+
     .form-control {
         &.error {
             border-color: $color-error;
@@ -125,6 +129,49 @@ form {
                         top: 6px;
                     }
                 }
+            }
+        }
+    }
+
+    &.readonly {
+        display: none;
+
+        button,
+        input[type=button],
+        input[type=submit] {
+            display: none;
+        }
+
+        .form-control-feedback {
+            display: none;
+        }
+
+        .input-group-addon {
+            padding: 2px 0;
+            background-color: #fff;
+            border: none;
+            vertical-align: top;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+
+            .form-control-static {
+                padding-top: 0;
+                min-height: 12px;
+            }
+        }
+
+        &.form-horizontal {
+            label {
+                padding-top: 0;
+            }
+        }
+
+        &.form-inline {
+
+            .form-control-static {
+                padding-right: 15px;
             }
         }
     }

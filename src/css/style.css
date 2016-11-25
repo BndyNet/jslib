@@ -41,7 +41,10 @@
     margin-top: -3px;
     margin-left: -20px; }
 
-/* jquery validate */
+/* form */
+form select.form-control {
+  padding-left: 9px; }
+
 form .form-control.error {
   border-color: #ff6a00; }
   form .form-control.error + label.error {
@@ -75,6 +78,29 @@ form.form-inline .form-control.error + label.error {
 form.form-horizontal .form-control.error + label.error {
   right: 20px;
   top: 6px; }
+
+form.readonly {
+  display: none; }
+  form.readonly button,
+  form.readonly input[type=button],
+  form.readonly input[type=submit] {
+    display: none; }
+  form.readonly .form-control-feedback {
+    display: none; }
+  form.readonly .input-group-addon {
+    padding: 2px 0;
+    background-color: #fff;
+    border: none;
+    vertical-align: top; }
+  form.readonly .form-group {
+    margin-bottom: 5px; }
+    form.readonly .form-group .form-control-static {
+      padding-top: 0;
+      min-height: 12px; }
+  form.readonly.form-horizontal label {
+    padding-top: 0; }
+  form.readonly.form-inline .form-control-static {
+    padding-right: 15px; }
 
 /* dialog */
 .layui-layer .layui-layer-btn .layui-layer-btn0 {
