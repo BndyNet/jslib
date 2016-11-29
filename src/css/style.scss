@@ -165,11 +165,11 @@ form {
         &.form-horizontal {
             label {
                 padding-top: 0;
+                padding-right: 0;
             }
         }
 
         &.form-inline {
-
             .form-control-static {
                 padding-right: 15px;
             }
