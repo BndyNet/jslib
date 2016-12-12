@@ -26,5 +26,9 @@
   {
     "outputFile": "lib/alertifyjs/css/alertify.css",
     "inputFile": "lib/alertifyjs/css/alertify.scss"
+  },
+  {
+    "outputFile": "js/angular/directives.js",
+    "inputFile": "js/angular/directives.coffee"
   }
 ]

@@ -21,6 +21,20 @@
 .margin-sm {
   margin: 5px; }
 
+/* nav */
+.nav {
+  /* not bootstrap styles */ }
+  .nav.nav-vertical li a {
+    font-size: 1.25em;
+    padding: 6px 15px;
+    border-left: 2px solid transparent; }
+    .nav.nav-vertical li a:hover, .nav.nav-vertical li a:focus, .nav.nav-vertical li a:active {
+      background-color: transparent;
+      border-color: #eeeeee; }
+  .nav.nav-vertical li.active a {
+    border-color: #337ab7;
+    font-weight: bold; }
+
 /* form */
 .form-group {
   position: relative; }
@@ -112,10 +126,50 @@ form.readonly {
   border-radius: 3px; }
 
 /* bn components */
+.panel-example {
+  padding: 45px 15px 15px 15px;
+  position: relative; }
+  .panel-example:after {
+    content: "Example";
+    text-transform: uppercase;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.15em;
+    font-weight: 500;
+    color: rgba(119, 119, 119, 0.6);
+    letter-spacing: 1px; }
+
+.bn-dialog-loaded,
 .bn-dialog-loading {
   position: absolute;
   top: 0;
   left: 0;
   text-align: center;
   background: rgba(255, 255, 255, 0.8); }
+
+.bn-dialog-loaded {
+  background-color: transparent; }
+
+.bn-pager {
+  margin: 10px 0; }
+  .bn-pager:after {
+    content: "";
+    display: block;
+    clear: both; }
+  .bn-pager .summary {
+    float: left;
+    margin: 7px 0; }
+  .bn-pager nav {
+    float: right; }
+    .bn-pager nav .pagination {
+      margin: 0; }
+  @media (max-width: 768px) {
+    .bn-pager .summary {
+      float: none;
+      text-align: center;
+      margin-bottom: 10px; }
+    .bn-pager nav {
+      float: none;
+      text-align: center; } }
 

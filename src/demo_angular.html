@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="lib/bootstrap/v3.3.7/css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+
+    <script>
+        var app = angular.module('app', []);
+    </script>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Angular Example</h1>
+            <h3>Directives</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9">
+                <section id="SecPager" ng-controller="PagerController">
+                    <h2>Pager</h2>
+                    <div class="panel panel-default panel-example">
+                        <form>
+                            <div class="row">
+                                <div class="form-group form-group-sm col-xs-4">
+                                    <label>Record Count</label>
+                                    <input type="number" class="form-control" ng-model="pagerModel.RecordCount" />
+                                </div>
+                                <div class="form-group form-group-sm col-xs-4">
+                                    <label>Page Size</label>
+                                    <input type="number" class="form-control" ng-model="pagerModel.PageSize" />
+                                </div>
+                                <div class="form-group form-group-sm col-xs-4">
+                                    <label>Total Page</label>
+                                    <input type="text" class="form-control" ng-model="pagerModel.PageCount" readonly />
+                                </div>
+                            </div>
+                        </form>
+                        <bn-pager ng-model="pagerModel" on-page="onPage" show-summary="true"></bn-pager>
+                    </div>
+
+                    <script>
+                        app.controller('PagerController', function ($scope) {
+                            $scope.pagerModel = {
+                                //DisplayPageNumbers: [1, 2, -1, 7, 8, 9, -1, 20, 21],
+                                CurrentPage: 1,
+                                RecordCount: 405,
+                                PageSize: 20
+                            };
+                            $scope.$watch("pagerModel", function (n, o) {
+                                if (n.RecordCount != o.RecordCount || n.PageSize != o.PageSize)
+                                    $scope.pagerModel.CurrentPage = 1;
+                                $scope.pagerModel.PageCount = Math.ceil($scope.pagerModel.RecordCount / $scope.pagerModel.PageSize);
+                                $scope.$broadcast('onModelChanged');
+                            }, true);
+                            $scope.onPage = function (p) {
+                                $scope.pagerModel.CurrentPage = p;
+                            };
+                        });
+                    </script>
+                </section>
+            </div>
+            <div class="col-xs-3" style="padding-top: 30px;">
+                <nav class="scrollspy">
+                    <ul class="nav nav-vertical hidden-xs hidden-sm" data-spy="affix">
+                        <li>
+                            <a href="#SecPager">Pager</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script src="js/angular/directives.js"></script>
+</body>
+</html>

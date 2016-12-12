@@ -3,9 +3,9 @@
 /*!
  * dialog v1.0.0
  * http://www.bndy.net
- * 
+#
  * Copyright (c) 2016 Bndy.Net, released under the MIT license
- * 
+#
  * Requires: jQuery, layer
  */
 
@@ -176,11 +176,12 @@
           html = $('<div class="bn-dialog-loading"><i class="icon fa fa-spin fa-spinner"></i><span class="text">' + options.text + '</span></div>');
           $(selector).each(function() {
             var h;
+            $(this).find('.bn-dialog-loaded').remove();
             if ($(this).find('.bn-dialog-loading').length > 0) {
               return $(this).find('.bn-dialog-loading').show();
             } else {
               h = html.clone();
-              $(this).css('position', 'relative');
+              $(this).height($(this).height()).css('position', 'relative');
               h.width($(this).outerWidth());
               h.height($(this).outerHeight());
               h.css('padding-top', h.height() / 2 - 10);
@@ -195,10 +196,15 @@
           layer.load(root.options.loadingIcon, options);
         }
       },
-      loaded: function(selector) {
+      loaded: function(selector, selectorContent) {
         if (selector) {
           $(selector).each(function() {
-            return $(this).find('.bn-dialog-loading').remove();
+            if (selectorContent) {
+              $(this).children(':not(.bn-dialog-loading)').remove();
+              return $(this).find('.bn-dialog-loading').removeClass('bn-dialog-loading').addClass('bn-dialog-loaded').html(selectorContent);
+            } else {
+              return $(this).find('.bn-dialog-loading').remove();
+            }
           });
         } else {
           layer.closeAll("loading");
