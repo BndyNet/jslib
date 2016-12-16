@@ -24,6 +24,8 @@
 /* nav */
 .nav {
   /* not bootstrap styles */ }
+  .nav.affix {
+    top: 20px; }
   .nav.nav-vertical li a {
     font-size: 1.25em;
     padding: 6px 15px;
@@ -34,6 +36,12 @@
   .nav.nav-vertical li.active a {
     border-color: #337ab7;
     font-weight: bold; }
+  .nav.nav-vertical li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+    .nav.nav-vertical li ul li a {
+      padding-left: 36px; }
 
 /* form */
 .form-group {
@@ -125,9 +133,16 @@ form.readonly {
 .layui-layer .layui-layer-btn .layui-layer-btn1 {
   border-radius: 3px; }
 
+/* angular ui */
+.form-control.ng-dirty.ng-valid.ng-not-empty {
+  /*border-color: $brand-success;*/ }
+
+.form-control.ng-dirty.ng-invalid {
+  border-color: #d9534f; }
+
 /* bn components */
 .panel-example {
-  padding: 45px 15px 15px 15px;
+  padding: 55px 15px 15px 15px;
   position: relative; }
   .panel-example:after {
     content: "Example";

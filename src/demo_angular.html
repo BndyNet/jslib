@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="app">
 <head>
-    <title></title>
+    <title>Angular Example</title>
     <meta charset="utf-8" />
     <link href="lib/bootstrap/v3.3.7/css/bootstrap.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
@@ -9,6 +9,8 @@
     <script src="lib/jquery/jquery-3.1.1.min.js"></script>
     <script src="lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/moment/moment-with-locales.js"></script>
 
     <script>
         var app = angular.module('app', []);
@@ -18,12 +20,58 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Angular Example</h1>
-            <h3>Directives</h3>
+            <h3>Filters, Directives</h3>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-xs-9">
+                <h2 id="SecFilters">Angular Filters</h2>
+                <section id="SecFilterDateTime" ng-controller="FiltersController">
+                    <h3>Date Time</h3>
+                    <div class="panel panel-danger panel-example">
+                        <div class="form-group">
+                            <input type="date" class="form-control" ng-model="dt" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        appDate
+                                    </span>
+                                    <span class="form-control" ng-bind="dt | appDate"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        appDateTime
+                                    </span>
+                                    <span class="form-control" ng-bind="dt | appDateTime"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        appFullDateTime
+                                    </span>
+                                    <span class="form-control" ng-bind="dt | appFullDateTime"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        app.controller('FiltersController', function ($scope, $interval) {
+                            $scope.dt = new Date();
+                            $interval(function () {
+                                $scope.dt = moment($scope.dt).add(1, 's')._d;
+                            }, 1000);
+                        });
+                    </script>
+                </section>
+
                 <section id="SecPager" ng-controller="PagerController">
                     <h2>Pager</h2>
                     <div class="panel panel-default panel-example">
@@ -66,18 +114,75 @@
                         });
                     </script>
                 </section>
+
+                <section id="SecFormValidation" ng-controller="FormValidationController">
+                    <h2>Form Validation</h2>
+                    <div class="panel panel-default panel-example">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label>Text (Required)</label>
+                                    <input type="text" class="form-control" ng-model="f1" required />
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label>Number</label>
+                                    <input type="number" class="form-control" ng-model="f2" />
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="form-group col-xs-6">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" ng-model="f3" />
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label>Regular Expression (Bndy\w+)</label>
+                                    <input type="text" class="form-control" ng-model="f4" ng-pattern="/Bndy\w+/" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label>Dropdown</label>
+                                    <select class="form-control" required ng-model="f5">
+                                        <option value="">...</option>
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <script>
+                        app.controller('FormValidationController', function ($scope) {
+                        });
+                    </script>
+                </section>
+
             </div>
             <div class="col-xs-3" style="padding-top: 30px;">
                 <nav class="scrollspy">
-                    <ul class="nav nav-vertical hidden-xs hidden-sm" data-spy="affix">
+                    <ul class="nav nav-vertical hidden-xs hidden-sm" data-spy="affix" data-offset-top="301">
+                        <li>
+                            <a href="#SecFilters">Angular Filters</a>
+                            <ul>
+                                <li>
+                                    <a href="#SecFilterDateTime">Date Time</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#SecPager">Pager</a>
+                        </li>
+                        <li>
+                            <a href="#SecFormValidation">Form Validation</a>
                         </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
+    <script src="js/angular/filters.js"></script>
     <script src="js/angular/directives.js"></script>
+    <script src="js/init.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-﻿((win) -> 
+﻿"use strict"
+((win) -> 
     win.mergeUrl = (root, relativeUrl)->
         arr = root.split("/")
         result = ""
@@ -31,4 +32,15 @@
             return "#{url}&#{key}=#{value}"
         else
             return "#{url}?#{key}=#{value}"
+            
+    win.encodeHtml = (html) ->
+        ele = document.createElement "div"
+        if typeof(ele.textContent) isnt "undefined"
+            ele.textContent = html
+        else 
+            ele.innerText = html
+        html = ele.innerHTML
+        ele = null
+        return html
+        
 ) window 

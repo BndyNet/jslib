@@ -1,4 +1,9 @@
-﻿$ ->
+﻿"use strict"
+
+# moment
+moment.locale('zh-cn');
+
+$ ->
     # jquery
     if $
         if $.fn.iCheck

@@ -34,6 +34,9 @@ html, body {
 
 /* nav */
 .nav {
+    &.affix {
+        top: 20px;
+    }
     /* not bootstrap styles */
     &.nav-vertical {
         li {
@@ -54,6 +57,18 @@ html, body {
                 a {
                     border-color: $brand-primary;
                     font-weight: bold;
+                }
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    a {
+                        padding-left: 36px;
+                    }
                 }
             }
         }
@@ -219,10 +234,25 @@ form {
     }
 }
 
-/* bn components */
 
+/* angular ui */
+.form-control {
+    &.ng-dirty {
+        &.ng-valid {
+            &.ng-not-empty {
+                /*border-color: $brand-success;*/
+            }
+        }
+
+        &.ng-invalid {
+            border-color: $brand-danger;
+        }
+    }
+}
+
+/* bn components */
 .panel-example {
-    padding: 45px 15px 15px 15px;
+    padding: 55px 15px 15px 15px;
     position: relative;
 
     &:after {
