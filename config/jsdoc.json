@@ -22,6 +22,9 @@
         "sort": true
     },
     "templates": {
+        "default": {
+            "layoutFile": "config/layout.tmpl"
+        },
         "cleverLinks": false,
         "monospaceLinks": false
     }

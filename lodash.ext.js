@@ -7,7 +7,8 @@
  * @see {@link http://bndy.net|Home Page}
  */
 
-/**===================================================================
+//===================================================================
+/**
  * @external Object
  */
 
@@ -19,8 +20,11 @@
  * @param {*=} propertyValue - The property value.
  * @returns {*} - The property value if propertyValue not set, otherwise nothing.
  * @example
- * {person: {name: 'Bendy'}}.prop('person.name') // output Bendy
- * {}.prop('name', 'Bendy');
+ * {person: {name: 'Bendy'}}.prop('person.name');
+ * // => Bendy
+ * 
+ * {name: 'Bendy'}.prop('age', 100);
+ * // => {name: 'Bendy', age: 100}
  */
 Object.prototype.prop = function (propertyName, propertyValue) {
     var isSet = typeof propertyValue === 'undefined' ? false : true;

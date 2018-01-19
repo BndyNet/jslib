@@ -4,7 +4,7 @@
   "description": "Javascript Library",
   "main": "main.js",
   "scripts": {
-    "doc": "jsdoc *.js  -c jsdoc.json --readme README.md",
+    "doc": "jsdoc *.js  -c config/jsdoc.json --readme README.md",
     "test": "jasmine"
   },
   "repository": {
