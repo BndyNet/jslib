@@ -18,7 +18,7 @@
  * @param {string} propertyName - The property name.
  * @param {function} callback - The callback function.
  * @example
- * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) {});
+ * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) { });
  */
 Object.prototype.ifHasProperty = function (propertyName, callback) {
     if (this.hasOwnProperty(propertyName)) {
@@ -37,6 +37,9 @@ if (!String.prototype.trim) {
      * Removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
      * @function external:String#trim
      * @returns {string} - A new string representing the calling string stripped of whitespace from both ends.
+     * @example
+     * ' bendy '.trim();
+     * // => bendy
      */
     String.prototype.trim = function () {
         return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
@@ -44,9 +47,12 @@ if (!String.prototype.trim) {
 }
 
 /**
- * Removes whitespace from the right end of a string.
+ * Removes whitespace from the left of a string.
  * @function external:String#ltrim
  * @returns {string}
+ * @example
+ * ' bendy '.ltrim();
+ * // => bendy  
  */
 String.prototype.ltrim = function () {
     if (String.prototype.trimLeft) {
@@ -56,9 +62,12 @@ String.prototype.ltrim = function () {
     return this.replace(/^\s+/, '');
 }
 /**
- * Removes whitespace from the left of a string.
+ * Removes whitespace from the right of a string.
  * @function external:String#rtrim
  * @returns {string}
+ * @example
+ * ' bendy '.rtrim();
+ * // =>   bendy
  */
 String.prototype.rtrim = function () {
     if (String.prototype.trimRight) {
@@ -71,6 +80,9 @@ String.prototype.rtrim = function () {
  * Replaces text inside a string.
  * @function external:String#replaceAll
  * @returns {string}
+ * @example
+ * 'Bendy Zhang'.replaceAll('n', '-');
+ * // => Be-dy Zha-g
  */
 String.prototype.replaceAll = function (search, replace) {
     if (replace === undefined) {
@@ -83,6 +95,9 @@ String.prototype.replaceAll = function (search, replace) {
  * Dasherizes string.
  * @function external:String#dasherize
  * @returns {string}
+ * @example
+ * 'Bendy Zhang 1949.10'.dasherize();
+ * // => bendy-zhang-1949-10
  */
 String.prototype.dasherize = function () {
     return this.replace(/\W+/g, "-").toLowerCase();
@@ -92,6 +107,9 @@ String.prototype.dasherize = function () {
  * Capitalizes string.
  * @function external:String#capitalize
  * @returns {string}
+ * @example
+ * 'bendy zhang'.capitalize();
+ * // => Bendy Zhang
  */
 String.prototype.capitalize = function () {
     var tmp = this.split(' ');
