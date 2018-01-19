@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>angular.ext.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#highlightText">highlightText</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-angular.html">angular</a><ul class='methods'><li data-type='method'><a href="external-angular.html#.resetForm">resetForm</a></li><li data-type='method'><a href="external-angular.html#.start">start</a></li></ul></li><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-Object.html">Object</a><ul class='methods'><li data-type='method'><a href="external-Object.html#ifHasProperty">ifHasProperty</a></li><li data-type='method'><a href="external-Object.html#prop">prop</a></li></ul></li><li><a href="external-String.html">String</a><ul class='methods'><li data-type='method'><a href="external-String.html#capitalize">capitalize</a></li><li data-type='method'><a href="external-String.html#dasherize">dasherize</a></li><li data-type='method'><a href="external-String.html#ltrim">ltrim</a></li><li data-type='method'><a href="external-String.html#replaceAll">replaceAll</a></li><li data-type='method'><a href="external-String.html#rtrim">rtrim</a></li><li data-type='method'><a href="external-String.html#trim">trim</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">angular.ext.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/**
+ * Utils for AngularJS v1.x
+ * @author Bendy Zhang &lt;zb@bndy.net>
+ * @copyright BNDY.NET 2017
+ * @see {@link http://bndy.net|Home Page}
+ * @external angular
+ */
+
+/**
+ * Starts angular application.
+ * @function external:angular.start
+ * @param {string} appName  - The angular application module name.
+ * @param {object=} options  - The options injected.
+ * @param {function} options.run - The fun function.
+ * @param {function} options.config  - The config function.
+ * @param {object} options.httpInterceptor - The httpIntercaptor.
+ * @param {function} options.httpInterceptor.request - The intercaptor about request.
+ * @param {function} options.httpInterceptor.requestError - The intercaptor about requestError.
+ * @param {function} options.httpInterceptor.response - The intercaptor about response.
+ * @param {function} options.httpInterceptor.responseError - The intercaptor about responseError.
+ * 
+ * @example &lt;caption>Usage&lt;/caption>
+ * angular.start('ngApp', {
+ *      request: function(config) {},
+ *      requestError: function(rejection) {},
+ *      response: function(response) {},
+ *      responseError: function(rejection) {},
+ *      ...
+ * });
+ * 
+ */
+angular.start = function (appName, options) {
+    options = options || {};
+    var app = angular.module(appName);
+
+    if (angular.isFunction(options.config)) {
+        app.config(options.config);
+    }
+
+    if (angular.isFunction(options.run)) {
+        app.run(options.run);
+    }
+
+    if (angular.isObject(options.httpInterceptor)) {
+        app.config([
+            '$provide', '$qProvider', '$httpProvider',
+            function ($provide, $qProvider, $httpProvider) {
+                $qProvider.errorOnUnhandledRejections(false);
+
+                // http interceptor
+                $provide.factory('appHttpInterceptor', [
+                    '$q', '$injector', '$timeout',
+                    function ($q, $injector, $timeout) {
+                        return {
+                            'request': function (config) {
+                                if (angular.isFunction(options.httpInterceptor.request)) {
+                                    options.httpInterceptor.request(config);
+                                }
+                                return config;
+                            },
+                            'requestError': function (rejection) {
+                                if (angular.isFunction(options.httpInterceptor.requestError)) {
+                                    options.httpInterceptor.requestError(rejection);
+                                } else {
+                                    console.error(rejection);
+                                }
+                                return $q.reject(rejection);
+                            },
+                            'response': function (response) {
+                                if (angular.isFunction(options.httpInterceptor.response)) {
+                                    options.httpInterceptor.response(response);
+                                }
+                                return response;
+                            },
+                            'responseError': function (rejection) {
+                                if (angular.isFunction(options.httpInterceptor.responseError)) {
+                                    options.httpInterceptor.responseError(rejection);
+                                } else {
+                                    console.error(rejection);
+                                }
+                                return $q.reject(rejection);
+                            }
+                        };
+                    }
+                ]);
+                $httpProvider.interceptors.push('appHttpInterceptor');
+            }
+        ]);
+    }
+
+    angular.element(document).ready(function () {
+        angular.bootstrap(document, [appName]);
+    });
+}
+
+/**
+ * Resets Form validation status.
+ * @function external:angular.resetForm
+ * @param {object} scopeDotFormName - The object of angular Form.
+ * @example
+ * angular.resetForm($scope.formName);
+ */
+angular.resetForm = function (scopeDotFormName) {
+    var ngForm = scopeDotFormName;
+    ngForm.$setPristine();
+    ngForm.$setUntouched();
+    ngForm.$error = {};
+    for (var item in ngForm) {
+        if (item.indexOf('$') &lt; 0) {
+            if (ngForm[item]) {
+                ngForm[item].$error = {};
+            }
+        }
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jan 19 2018 17:27:43 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

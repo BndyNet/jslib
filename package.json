@@ -1,0 +1,25 @@
+{
+  "name": "jslib",
+  "version": "1.0.0",
+  "description": "Javascript Library",
+  "main": "main.js",
+  "scripts": {
+    "doc": "jsdoc *.js  -c jsdoc.json --readme README.md",
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bndynet/jslib.git"
+  },
+  "author": "Bendy Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bndynet/jslib/issues"
+  },
+  "homepage": "https://github.com/bndynet/jslib#readme",
+  "devDependencies": {
+    "docdash": "^0.4.0",
+    "jasmine": "^2.9.0",
+    "jsdoc": "^3.5.5"
+  }
+}
