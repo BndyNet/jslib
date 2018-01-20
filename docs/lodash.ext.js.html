@@ -65,14 +65,17 @@
  * {name: 'Bendy'}.prop('age', 100);
  * // => {name: 'Bendy', age: 100}
  */
-Object.prototype.prop = function (propertyName, propertyValue) {
-    var isSet = typeof propertyValue === 'undefined' ? false : true;
-    if (isSet) {
-        _.set(this, propertyName, propertyValue);
-    } else {
-        _.get(this, propertyName);
-    }
-};</code></pre>
+Object.defineProperty(Object.prototype, 'porp', {
+    value: function (propertyName, propertyValue) {
+        var isSet = typeof propertyValue === 'undefined' ? false : true;
+        if (isSet) {
+            _.set(this, propertyName, propertyValue);
+        } else {
+            _.get(this, propertyName);
+        }
+    },
+    enumerable: false
+});</code></pre>
         </article>
     </section>
 
@@ -84,7 +87,7 @@ Object.prototype.prop = function (propertyName, propertyValue) {
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Fri Jan 19 2018 22:47:19 GMT+0800 (CST)
+    Generated  on Sat Jan 20 2018 18:29:41 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>

@@ -76,12 +76,14 @@ $.extend({
      *  $('p').highlightText('text');
      */
     $.fn.highlightText = function (text) {
-        if ($(this).children().length === 0) {
-            $(this).html($(this).text().replace(
-                new RegExp('(' + text + ')', "ig"),
-                '&lt;mark class="highlight">$1&lt;/mark>'
-            ));
-        }
+        $(this).each(function() {
+            if ($(this).children().length === 0) {
+                $(this).html($(this).text().replace(
+                    new RegExp('(' + text + ')', "ig"),
+                    '&lt;mark class="highlight">$1&lt;/mark>'
+                ));
+            }
+        });
         return $(this);
     }
 
@@ -111,7 +113,7 @@ $.extend({
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Fri Jan 19 2018 22:47:19 GMT+0800 (CST)
+    Generated  on Sat Jan 20 2018 18:29:41 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>

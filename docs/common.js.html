@@ -60,13 +60,17 @@
  * @example
  * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) { });
  */
-Object.prototype.ifHasProperty = function (propertyName, callback) {
-    if (this.hasOwnProperty(propertyName)) {
-        if (callback) {
-            callback(this[propertyName]);
+
+Object.defineProperty(Object.prototype, 'ifHasProperty', {
+    value: function (propertyName, callback) {
+        if (this.hasOwnProperty(propertyName)) {
+            if (callback) {
+                callback(this[propertyName]);
+            }
         }
-    }
-};
+    },
+    enumerable: false
+});
 
 //===================================================================
 /**
@@ -176,7 +180,7 @@ String.prototype.capitalize = function () {
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Fri Jan 19 2018 22:47:19 GMT+0800 (CST)
+    Generated  on Sat Jan 20 2018 18:29:41 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>
