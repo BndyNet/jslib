@@ -37,9 +37,9 @@ $.extend({
      *  $('p').highlightText('text');
      */
     $.fn.highlightText = function (text) {
-        $(this).each(function(elem) {
-            if ($(elem).children().length === 0) {
-                $(elem).html($(this).text().replace(
+        $(this).each(function() {
+            if ($(this).children().length === 0) {
+                $(this).html($(this).text().replace(
                     new RegExp('(' + text + ')', "ig"),
                     '<mark class="highlight">$1</mark>'
                 ));
