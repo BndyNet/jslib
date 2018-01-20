@@ -21,13 +21,17 @@
  * @example
  * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) { });
  */
-Object.prototype.ifHasProperty = function (propertyName, callback) {
-    if (this.hasOwnProperty(propertyName)) {
-        if (callback) {
-            callback(this[propertyName]);
+
+Object.defineProperty(Object.prototype, 'ifHasProperty', {
+    value: function (propertyName, callback) {
+        if (this.hasOwnProperty(propertyName)) {
+            if (callback) {
+                callback(this[propertyName]);
+            }
         }
-    }
-};
+    },
+    enumerable: false
+});
 
 //===================================================================
 /**

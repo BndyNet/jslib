@@ -26,11 +26,14 @@
  * {name: 'Bendy'}.prop('age', 100);
  * // => {name: 'Bendy', age: 100}
  */
-Object.prototype.prop = function (propertyName, propertyValue) {
-    var isSet = typeof propertyValue === 'undefined' ? false : true;
-    if (isSet) {
-        _.set(this, propertyName, propertyValue);
-    } else {
-        _.get(this, propertyName);
-    }
-};
+Object.defineProperty(Object.prototype, 'porp', {
+    value: function (propertyName, propertyValue) {
+        var isSet = typeof propertyValue === 'undefined' ? false : true;
+        if (isSet) {
+            _.set(this, propertyName, propertyValue);
+        } else {
+            _.get(this, propertyName);
+        }
+    },
+    enumerable: false
+});
