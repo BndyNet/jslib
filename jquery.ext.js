@@ -21,6 +21,28 @@ $.extend({
     toggleScroll: function() {
         $('body').toggleScroll();
     },
+
+    /**
+     * Gets a single Promise that resolves all $.ajax functions.
+     * @function external:jQuery.ajaxAll
+     * @param {jqXhr} argument - A jqXhr such as $.ajax({})
+     * @param {jqXhr} ... - more
+     * @returns {Promise} A single promise.
+     * @example
+     * $.ajaxAll($.get(...), $.post(...), $.ajax(...)).then(function(values){}, function(rejections){});
+     * $.ajaxAll($.get(...));
+     */
+    ajaxAll: function() {
+        var promises = [];
+        for(var idx = 0; idx < arguments.length; idx++) {
+            var jqXhr = arguments[idx];
+            promises.push(new Promise(function(resolve, reject) {
+                jqXhr.done(resolve).fail(reject);
+            }));
+        }
+        
+        return Promise.all(promises);
+    },
 });
 
 (function ($) {
