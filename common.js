@@ -7,6 +7,56 @@
 
 
 'use strict';
+//===================================================================
+
+/**
+ * Gets a random string.
+ * @param {number} len - The random string length.
+ * @returns {string} A random string.
+ * @example
+ * generateRandomAlphaNum(10);
+ * // => 4zvu4la1cd
+ */
+function generateRandomAlphaNum(len) {
+    var rdmString = "";
+    for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
+    return  rdmString.substr(0, len);
+
+}
+
+/**
+ * Checks whether is number.
+ * @param {*} n 
+ * @returns {boolean} true if number, otherwise false.
+ */
+function isNumber(n){
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Checks whether is an Array.
+ * @param {*} obj - The target.
+ * @returns {boolean} true if an array, otherwise false.
+ */
+function isArray(obj){
+    return Object.prototype.toString.call(obj) === '[object Array]' ;
+}
+
+/**
+ * Escapes the html string.
+ * @param {*} text - The html string.
+ * @returns {string} A string escaped.
+ * @example
+ * escapeHTML('<h1>Hell World!</h1>');
+ * // => &lt;h1&gt;Hell World!&lt;/h1&gt;
+ */
+function escapeHTML(text) {  
+    var replacements= {"<": "&lt;", ">": "&gt;","&": "&amp;", "\"": "&quot;"};                      
+    return text.replace(/[<>&"]/g, function(character) {  
+        return replacements[character];  
+    }); 
+}
+
 
 //===================================================================
 /**
