@@ -1,11 +1,11 @@
-'use strict';
-
 /**
  * Native functions
  * @author Bendy Zhang <zb@bndy.net>
  * @copyright BNDY.NET 2017
  * @see {@link http://bndy.net|Home Page}
  */
+
+'use strict';
 
 //===================================================================
 /**

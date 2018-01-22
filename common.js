@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Native functions
  * @author Bendy Zhang <zb@bndy.net>
@@ -7,6 +5,8 @@
  * @see {@link http://bndy.net|Home Page}
  */
 
+
+'use strict';
 
 //===================================================================
 /**

@@ -37,54 +37,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-
-/**
+            <pre class="prettyprint source linenums"><code>/**
  * The jQuery plugins.
  * @author Bendy Zhang &lt;zb@bndy.net>
  * @copyright BNDY.NET 2017
  * @see {@link http://bndy.net|Home Page}
  */
 
-$.extend({
+'use strict';
+
+(function ($) {
+    //==================================================================
     /**
      * @external jQuery
      */
+    $.extend({
+        /**
+         * Enables/disables window scrolling.
+         * @function external:jQuery.toggleScroll
+         * @example
+         * $.toggleScroll();
+         */
+        toggleScroll: function() {
+            $('body').toggleScroll();
+        },
+    
+        /**
+         * Gets a single Promise that resolves all $.ajax functions.
+         * @function external:jQuery.ajaxAll
+         * @param {jqXhr} argument - A jqXhr such as $.ajax({})
+         * @param {jqXhr} ... - more
+         * @returns {Promise} A single promise.
+         * @example
+         * $.ajaxAll($.get(...), $.post(...), $.ajax(...)).then(function(values){}, function(rejections){});
+         * $.ajaxAll($.get(...));
+         */
+        ajaxAll: function() {
+            var promises = [];
+            for(var idx = 0; idx &lt; arguments.length; idx++) {
+                var jqXhr = arguments[idx];
+                promises.push(new Promise(function(resolve, reject) {
+                    jqXhr.done(resolve).fail(reject);
+                }));
+            }
+            
+            return Promise.all(promises);
+        },
+    });
 
-    /**
-     * Enables/disables window scrolling.
-     * @function external:jQuery.toggleScroll
-     * @example
-     * $.toggleScroll();
-     */
-    toggleScroll: function() {
-        $('body').toggleScroll();
-    },
-
-    /**
-     * Gets a single Promise that resolves all $.ajax functions.
-     * @function external:jQuery.ajaxAll
-     * @param {jqXhr} argument - A jqXhr such as $.ajax({})
-     * @param {jqXhr} ... - more
-     * @returns {Promise} A single promise.
-     * @example
-     * $.ajaxAll($.get(...), $.post(...), $.ajax(...)).then(function(values){}, function(rejections){});
-     * $.ajaxAll($.get(...));
-     */
-    ajaxAll: function() {
-        var promises = [];
-        for(var idx = 0; idx &lt; arguments.length; idx++) {
-            var jqXhr = arguments[idx];
-            promises.push(new Promise(function(resolve, reject) {
-                jqXhr.done(resolve).fail(reject);
-            }));
-        }
-        
-        return Promise.all(promises);
-    },
-});
-
-(function ($) {
+    //==================================================================
     /**
      * @external "jQuery.fn"
      */
@@ -171,7 +172,7 @@ $.extend({
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Mon Jan 22 2018 11:06:40 GMT+0800 (CST)
+    Generated  on Mon Jan 22 2018 12:44:25 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>
