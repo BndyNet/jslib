@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#highlightText">highlightText</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-angular.html">angular</a><ul class='methods'><li data-type='method'><a href="external-angular.html#.resetForm">resetForm</a></li><li data-type='method'><a href="external-angular.html#.start">start</a></li></ul></li><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-Object.html">Object</a><ul class='methods'><li data-type='method'><a href="external-Object.html#ifHasProperty">ifHasProperty</a></li><li data-type='method'><a href="external-Object.html#prop">prop</a></li></ul></li><li><a href="external-String.html">String</a><ul class='methods'><li data-type='method'><a href="external-String.html#capitalize">capitalize</a></li><li data-type='method'><a href="external-String.html#dasherize">dasherize</a></li><li data-type='method'><a href="external-String.html#ltrim">ltrim</a></li><li data-type='method'><a href="external-String.html#replaceAll">replaceAll</a></li><li data-type='method'><a href="external-String.html#rtrim">rtrim</a></li><li data-type='method'><a href="external-String.html#trim">trim</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Externals</h3><ul><li><a href="external-_jQuery.fn_.html">jQuery.fn</a><ul class='methods'><li data-type='method'><a href="external-_jQuery.fn_.html#cover">cover</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#highlightText">highlightText</a></li><li data-type='method'><a href="external-_jQuery.fn_.html#toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-angular.html">angular</a><ul class='methods'><li data-type='method'><a href="external-angular.html#.resetForm">resetForm</a></li><li data-type='method'><a href="external-angular.html#.start">start</a></li></ul></li><li><a href="external-jQuery.html">jQuery</a><ul class='methods'><li data-type='method'><a href="external-jQuery.html#.toggleScroll">toggleScroll</a></li></ul></li><li><a href="external-Object.html">Object</a><ul class='methods'><li data-type='method'><a href="external-Object.html#ifHasProperty">ifHasProperty</a></li><li data-type='method'><a href="external-Object.html#prop">prop</a></li></ul></li><li><a href="external-String.html">String</a><ul class='methods'><li data-type='method'><a href="external-String.html#capitalize">capitalize</a></li><li data-type='method'><a href="external-String.html#dasherize">dasherize</a></li><li data-type='method'><a href="external-String.html#ltrim">ltrim</a></li><li data-type='method'><a href="external-String.html#replaceAll">replaceAll</a></li><li data-type='method'><a href="external-String.html#rtrim">rtrim</a></li><li data-type='method'><a href="external-String.html#trim">trim</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -100,6 +100,42 @@ $.extend({
             $(this).css('overflow', 'hidden');
         }
     }
+
+    /**
+     * Sets a cover for current element.
+     * @function external:"jQuery.fn"#cover
+     * @param {string} msg - The cover html content.
+     * @returns {jQuery} The cover element if msg is not false, otherwise nothing.
+     * @example
+     * var loading = $('.box').cover('Loading...');
+     * loading.cover(false);    // remove cover
+     */
+    $.fn.cover = function(msg) {
+        var parent = $(this);
+        if (parent.hasClass('loading-wrapper')) {
+            parent = parent.parent();
+        }
+
+        if (msg || typeof msg === 'undefined') {
+            parent.css({position: 'relative'});
+            var elem = $('&lt;div class="loading-wrapper">&lt;span style="display: table-cell;vertical-align: middle;text-align: center;">&lt;/span>&lt;/div>');
+            elem.find('span').html(msg);
+            elem.css({
+                position: 'absolute', 
+                top: 0, 
+                left: 0, 
+                display: 'table',
+                width: parent.outerWidth(), 
+                height: parent.outerHeight(),
+                backgroundColor: 'rgba(255,255,255, .8)',
+                textAlgin: 'center',
+            });
+            parent.append(elem);
+            return elem;
+        } else {
+            parent.find('.loading-wrapper').remove();
+        }
+    }
 })(jQuery);
 </code></pre>
         </article>
@@ -113,7 +149,7 @@ $.extend({
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Sat Jan 20 2018 18:29:41 GMT+0800 (CST)
+    Generated  on Mon Jan 22 2018 10:13:35 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>

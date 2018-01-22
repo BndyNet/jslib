@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <style>
+            html,body {
+                font-size: 13px;
+            }
+        </style>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <script src="../jquery.ext.js"></script>
+    </head>
+    <body>
+
+        <div id="loading-demo" style="height:300px;width:300px; padding:20px; margin:10px; border:solid 1px #ddd;">
+            <button>Loading</button>
+            Show the data.
+        </div>
+        <script>
+            $('#loading-demo').on('click', 'button', function() {
+                var cover;
+                cover = $('#loading-demo').cover('Loading..........(5s)');
+                setTimeout(function() {
+                    cover.cover(false);
+                }, 5000);
+            });
+        </script>
+    </body>
+</html>
