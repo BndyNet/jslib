@@ -115,3 +115,24 @@ angular.resetForm = function (scopeDotFormName) {
         }
     }
 };
+
+/**
+ * Gets a single Promise that resolves all $http functions.
+ * @function external:angular.ajaxAll
+ * @param {$http} argument - A $http such as $http.get()
+ * @param {$http} ... - more
+ * @returns {Promise} A single promise.
+ * @example
+ * angular.ajaxAll($http.get(...), $http.post(...)).then(function(values){}, function(rejections){});
+ * angular.ajaxAll($http.get(...));
+ */
+angular.ajaxAll = function() {
+    var promises = [];
+    for (var idx = 0; idx < arguments.length; idx ++ ) {
+        var ajax = arguments[idx];
+        promises.push(new Promise(function(resolve, reject) {
+            ajax.then(resolve, reject);
+        }));
+    }
+    return Promise.all(promises);
+}
