@@ -57,7 +57,9 @@
      * @param {string} text - The text needs to highlight.
      * @returns {jQuery} The elements matched.
      * @example
-     *  $('p').highlightText('text');
+     * <p>Hello World!</p>
+     * $('p').highlightText('e');
+     * // => <p>H<mark class="highlight">e</mark>llo World!</p>
      */
     $.fn.highlightText = function (text) {
         $(this).each(function() {

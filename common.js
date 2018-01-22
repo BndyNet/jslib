@@ -15,12 +15,12 @@
  * @returns {string} A random string.
  * @example
  * generateRandomAlphaNum(10);
- * // => 4zvu4la1cd
+ * // => "4zvu4la1cd"
  */
 function generateRandomAlphaNum(len) {
     var rdmString = "";
-    for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
-    return  rdmString.substr(0, len);
+    for (; rdmString.length < len; rdmString += Math.random().toString(36).substr(2));
+    return rdmString.substr(0, len);
 
 }
 
@@ -29,7 +29,7 @@ function generateRandomAlphaNum(len) {
  * @param {*} n 
  * @returns {boolean} true if number, otherwise false.
  */
-function isNumber(n){
+function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
@@ -38,8 +38,17 @@ function isNumber(n){
  * @param {*} obj - The target.
  * @returns {boolean} true if an array, otherwise false.
  */
-function isArray(obj){
-    return Object.prototype.toString.call(obj) === '[object Array]' ;
+function isArray(obj) {
+    return Object.prototype.toString.call(obj) === '[object Array]';
+}
+
+/**
+ * Checks whether is a function.
+ * @param {*} obj - The target.
+ * @returns {boolean} true if function, otherwise false.
+ */
+function isFunction(obj) {
+    return typeof obj === 'function';
 }
 
 /**
@@ -48,13 +57,18 @@ function isArray(obj){
  * @returns {string} A string escaped.
  * @example
  * escapeHTML('<h1>Hell World!</h1>');
- * // => &lt;h1&gt;Hell World!&lt;/h1&gt;
+ * // => "&lt;h1&gt;Hell World!&lt;/h1&gt;"
  */
-function escapeHTML(text) {  
-    var replacements= {"<": "&lt;", ">": "&gt;","&": "&amp;", "\"": "&quot;"};                      
-    return text.replace(/[<>&"]/g, function(character) {  
-        return replacements[character];  
-    }); 
+function escapeHTML(text) {
+    var replacements = {
+        "<": "&lt;",
+        ">": "&gt;",
+        "&": "&amp;",
+        "\"": "&quot;"
+    };
+    return text.replace(/[<>&"]/g, function (character) {
+        return replacements[character];
+    });
 }
 
 
@@ -63,24 +77,41 @@ function escapeHTML(text) {
  * @external Object
  */
 
-/**
- * To do something if the object hasOwnProperty.
- * @function external:Object#ifHasProperty
- * @param {string} propertyName - The property name.
- * @param {function} callback - The callback function.
- * @example
- * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) { });
- */
-
-Object.defineProperty(Object.prototype, 'ifHasProperty', {
-    value: function (propertyName, callback) {
-        if (this.hasOwnProperty(propertyName)) {
-            if (callback) {
-                callback(this[propertyName]);
+Object.defineProperties(Object.prototype, {
+    /**
+     * To do something if the object hasOwnProperty.
+     * @function external:Object#ifHasProperty
+     * @param {string} propertyName - The property name.
+     * @param {function} callback - The callback function.
+     * @example
+     * {name: 'Bendy'}.ifHasProperty('name', function(propertyValue) { console.debug(propertyValue); });
+     * // Bendy
+     */
+    ifHasProperty: {
+        value: function (propertyName, callback) {
+            if (this.hasOwnProperty(propertyName)) {
+                if (callback) {
+                    callback(this[propertyName]);
+                }
             }
-        }
+        },
+        enumerable: false, // defaults to false
+        writable: false, // defaults to false
     },
-    enumerable: false
+
+    /**
+     * Converts an object to json string.
+     * @function external:Object#toJsonString
+     * @returns {string} A json string.
+     * @example
+     * {name:'zhang'}.toJsonString();
+     * // => "{"name":"zhang"}"
+     */
+    toJsonString: {
+        value: function () {
+            return JSON.stringify(this);
+        },
+    },
 });
 
 //===================================================================
@@ -95,7 +126,7 @@ if (!String.prototype.trim) {
      * @returns {string} - A new string representing the calling string stripped of whitespace from both ends.
      * @example
      * ' bendy '.trim();
-     * // => bendy
+     * // => "bendy"
      */
     String.prototype.trim = function () {
         return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
@@ -108,7 +139,7 @@ if (!String.prototype.trim) {
  * @returns {string}
  * @example
  * ' bendy '.ltrim();
- * // => bendy  
+ * // => "bendy  "
  */
 String.prototype.ltrim = function () {
     if (String.prototype.trimLeft) {
@@ -123,7 +154,7 @@ String.prototype.ltrim = function () {
  * @returns {string}
  * @example
  * ' bendy '.rtrim();
- * // =>   bendy
+ * // => "  bendy"
  */
 String.prototype.rtrim = function () {
     if (String.prototype.trimRight) {
@@ -138,7 +169,7 @@ String.prototype.rtrim = function () {
  * @returns {string}
  * @example
  * 'Bendy Zhang'.replaceAll('n', '-');
- * // => Be-dy Zha-g
+ * // => "Be-dy Zha-g"
  */
 String.prototype.replaceAll = function (search, replace) {
     if (replace === undefined) {
@@ -153,7 +184,7 @@ String.prototype.replaceAll = function (search, replace) {
  * @returns {string}
  * @example
  * 'Bendy Zhang 1949.10'.dasherize();
- * // => bendy-zhang-1949-10
+ * // => "bendy-zhang-1949-10"
  */
 String.prototype.dasherize = function () {
     return this.replace(/\W+/g, "-").toLowerCase();
@@ -165,7 +196,7 @@ String.prototype.dasherize = function () {
  * @returns {string}
  * @example
  * 'bendy zhang'.capitalize();
- * // => Bendy Zhang
+ * // => "Bendy Zhang"
  */
 String.prototype.capitalize = function () {
     var tmp = this.split(' ');
@@ -179,4 +210,51 @@ String.prototype.capitalize = function () {
         }
     }
     return result;
+};
+
+/**
+ * Strips html tags.
+ * @function external:String#stripHtmlTag
+ * @returns {string} The string which does not include any html tags.
+ * @example
+ * '<div>Hello <span>World!</span></div>'.stripHtmlTag();
+ * // => "Hello World!""
+ */
+String.prototype.stripHtmlTag = function () {
+    if (this) {
+        return this.replace(/<.*?>/g, '').replace(/\s+/g, ' ').trim();
+    }
+    return '';
+};
+
+/**
+ * Cuts the string.
+ * @function external:String#cut
+ * @param {number} len - The length needs to cut.
+ * @param {string} [ellipsis=...] - The ellipsis if the len larger than string length.
+ * @returns {string} A cutted string with ellipsis or self.
+ * @example
+ * 'Bendy'.cut(3);
+ * // => "Ben..."
+ * 'Bendy'.cut(3, '---');
+ * // => "Ben---"
+ */
+String.prototype.cut = function (len, ellipsis) {
+    ellipsis = ellipsis || '...';
+    if (this.length > len) {
+        return this.substr(0, len) + ellipsis;
+    }
+    return this;
+};
+
+/**
+ * Converts a string to Json object.
+ * @function external:String#toJson
+ * @returns {object} The parsed object.
+ */
+String.prototype.toJson = function () {
+    if (this) {
+        return JSON.parse(this);
+    }
+    return null;
 };
