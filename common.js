@@ -271,9 +271,89 @@ String.prototype.toObject = function () {
  * 'Bendy Zhang'.regexReplace(/\sZh/ig, '-');
  * // => "Bendy-ndy"
  */
-String.prototype.regexReplace = function(pattern, replacement) {
+String.prototype.regexReplace = function (pattern, replacement) {
     if (typeof pattern === 'string') {
         return this.replace(new RegExp(pattern, 'ig'), replacement);
-    } 
+    }
     return this.replace(pattern, replacement);
+};
+
+/**
+ * Repeats the specific string.
+ * @function external:String#repeat
+ * @param {number} count - The repeat count.
+ * @returns {string} The repeated string.
+ * @example
+ * 'abc'.repeat(0);    // ''
+ * 'abc'.repeat(1);    // 'abc'
+ * 'abc'.repeat(2);    // 'abcabc'
+ */
+if (!String.prototype.repeat) {
+    String.prototype.repeat = function (count) {
+        var result = '';
+        for (var i = 0; i < count; i++) {
+            result += this;
+        }
+        return result;
+    };
+}
+
+/**
+ * Pads string at start. 
+ * @function external:String#padLeft
+ * @param {number} targetLength - The total length.
+ * @param {string} padString - The padding string.
+ * @returns {string} The padded string.
+ * @example
+ * 'abc'.padLeft(10);         // "       abc"
+ * 'abc'.padLeft(10, "foo");  // "foofoofabc"
+ * 'abc'.padLeft(6,"123465"); // "123abc"
+ * 'abc'.padLeft(8, "0");     // "00000abc"
+ * 'abc'.padLeft(1);          // "abc"
+ */
+String.prototype.padLeft = function (targetLength, padString) {
+    if (!padString) {
+        return this;
+    }
+    if (String.prototype.padStart) {
+        return this.padStart(targetLength, padString);
+    }
+
+    if (this.length < targetLength) {
+        var repeatCount = (targetLength - this.length) / padString;
+        var tailLength = Math.floor(targetLength - this.length) / padString;
+        return padString.repeat(repeatCount) + padString.substr(0, tailLength) + this;
+    }
+
+    return this;
+};
+
+/**
+ * Pads string at end. 
+ * @function external:String#padRight
+ * @param {number} targetLength - The total length.
+ * @param {string} padString - The padding string.
+ * @returns {string} The padded string.
+ * @example
+ * 'abc'.padRight(10);         // "abc       "
+ * 'abc'.padRight(10, "foo");  // "abcfoofoof"
+ * 'abc'.padRight(6,"123465"); // "abc123"
+ * 'abc'.padRight(8, "0");     // "abc00000"
+ * 'abc'.padRight(1);          // "abc"
+ */
+String.prototype.padRight = function (targetLength, padString) {
+    if (!padString) {
+        return this;
+    }
+    if (String.prototype.padEnd) {
+        return this.padEnd(targetLength, padString);
+    }
+
+    if (this.length < targetLength) {
+        var repeatCount = (targetLength - this.length) / padString;
+        var tailLength = Math.floor(targetLength - this.length) / padString;
+        return this + padString.repeat(repeatCount) + padString.substr(0, tailLength);
+    }
+
+    return this;
 };
