@@ -101,13 +101,13 @@ Object.defineProperties(Object.prototype, {
 
     /**
      * Converts an object to json string.
-     * @function external:Object#toJsonString
+     * @function external:Object#toJson
      * @returns {string} A json string.
      * @example
      * {name:'zhang'}.toJsonString();
      * // => "{"name":"zhang"}"
      */
-    toJsonString: {
+    toJson: {
         value: function () {
             return JSON.stringify(this);
         },
@@ -249,12 +249,30 @@ String.prototype.cut = function (len, ellipsis) {
 
 /**
  * Converts a string to Json object.
- * @function external:String#toJson
+ * @function external:String#toObject
  * @returns {object} The parsed object.
  */
-String.prototype.toJson = function () {
+String.prototype.toObject = function () {
     if (this) {
         return JSON.parse(this);
     }
     return null;
+};
+
+/**
+ * Replaces using regex.
+ * @param {*} pattern - The regex pattern object or string.
+ * @param {*} replacement - The replacement needs to replace.
+ * @returns {string} The replaced string.
+ * @example
+ * 'Bendy Zhang'.regexReplace('\sZh', '-');
+ * // => "Bendy-ndy"
+ * 'Bendy Zhang'.regexReplace(/\sZh/ig, '-');
+ * // => "Bendy-ndy"
+ */
+String.prototype.regexReplace = function(pattern, replacement) {
+    if (typeof pattern === 'string') {
+        return this.replace(new RegExp(pattern, 'ig'), replacement);
+    } 
+    return this.replace(pattern, replacement);
 };
