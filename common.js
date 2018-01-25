@@ -171,11 +171,11 @@ String.prototype.rtrim = function () {
  * 'Bendy Zhang'.replaceAll('n', '-');
  * // => "Be-dy Zha-g"
  */
-String.prototype.replaceAll = function (search, replace) {
-    if (replace === undefined) {
+String.prototype.replaceAll = function (search, replacement) {
+    if (typeof replacement === 'undefined') {
         return this.toString();
     }
-    return this.split(search).join(replace);
+    return this.split(search).join(replacement);
 };
 
 /**
@@ -261,7 +261,8 @@ String.prototype.toObject = function () {
 
 /**
  * Replaces using regex.
- * @param {*} pattern - The regex pattern object or string.
+ * @function external:String#regexReplace
+ * @param {*} pattern - The regex pattern object or string. If expression string, will ignore case and global replacement.
  * @param {*} replacement - The replacement needs to replace.
  * @returns {string} The replaced string.
  * @example
