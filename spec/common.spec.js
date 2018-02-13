@@ -26,5 +26,8 @@ describe("Test for type String", function() {
     });
     it('method:dasherize', function() {
         expect('bendy zhang'.dasherize()).toBe('bendy-zhang');
-     });
+    });
+    it('method:title2Url', function(){
+        expect('Hello World!'.title2Url()).toBe('hello-world-');
+    });
 });

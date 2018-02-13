@@ -357,3 +357,19 @@ String.prototype.padRight = function (targetLength, padString) {
 
     return this;
 };
+
+/**
+ * Make title which can as one part in url. like hello-world.
+ * @function external:String#title2Url
+ * @param {string} title - The title.
+ * @returns {string} The string is one part of url.
+ * @example
+ * 'Hello World!'.title2Url();
+ * // => hello-world-
+ */
+String.prototype.title2Url = function() {
+    if (this) {
+        return this.replace(/\W+/g, '-').toLowerCase();
+    }
+    return '';
+};
