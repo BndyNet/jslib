@@ -1,4 +1,4 @@
-var Color = require('../common.js');
+require('../common');
 
 describe("Test for type Object", function() {
     it('should own property', function() {

@@ -144,6 +144,46 @@
                 }
             });
             return this;
-        }
+        },
+
+        /**
+         * Renders the html with specified data. Supports Handelbars engine just include handlebars.js
+         * @function external:"jQuery.fn"#bindData
+         * @param {object} data - The data model used to bind.
+         * @param {targetId=} - The id of target element which is used to include the html bound data.
+         * @example
+         * $('<h1>{{name}}</h1>').bindData({name: 'Bendy'});
+         * // => '<h1>Bendy</h1>'
+         * <script id="tpl" type="text/x-handlebars-template">
+         *  <h1>{{name}}</h1>
+         * </script>
+         * <div id="container"></div>
+         * $('#tpl').bindData({name: 'Bendy'}, 'container');
+         * <div id="container"><h1>Bendy</h1></div>
+         * @returns {string} The html string with bound data.
+         */
+        bindData: function(data, targetId) {
+            var templateHtml = $(this).html();
+            var html = templateHtml;
+            if (typeof Handlebars === 'undefined') {
+                var keys = Object.keys(data);
+                for (var idx = 0; idx < keys.length; idx++) {
+                    var key = keys[idx];
+                    html = html.replace('{{' + key + '}}', data[key]);
+                }
+
+                html = html.replace(/\{\{.+\}\}/g, '');
+            } else {
+                var compile = Handlebars.compile(templateHtml);
+                html = compile(data);
+            }
+
+            if (targetId) {
+                $('#' + targetId).html(html);
+            } else {
+                $(this).html(html);
+            }
+            return html;
+        },
     });
 })(jQuery);

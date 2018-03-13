@@ -20,6 +20,8 @@
   "devDependencies": {
     "docdash": "^0.4.0",
     "jasmine": "^2.9.0",
-    "jsdoc": "^3.5.5"
+    "jquery": "^3.3.1",
+    "jsdoc": "^3.5.5",
+    "jsdom": "^11.6.2"
   }
 }
