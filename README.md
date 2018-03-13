@@ -1,7 +1,7 @@
 # Javascript Library 
 
 Provides utils for jQuery, AngularJS, Bootstrap and so on. 
-[[Docs]](http://bndy.net/jslib/docs)
+[[Docs]](https://bndynet.github.io/jslib/docs/)
 
 	
 	 _______                   __                __    __              __     
