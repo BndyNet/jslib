@@ -283,7 +283,7 @@
 
     
 
-    <h4 class="name" id="bindData"><span class="type-signature"></span>bindData<span class="signature">(data)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="bindData"><span class="type-signature"></span>bindData<span class="signature">(data, targetId<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
     <p class="summary">Renders the html with specified data.</p>
@@ -337,7 +337,8 @@
 
 
 <div class="description">
-    <p>Renders the html with specified data. Supports Handelbars engine just include handlebars.js</p>
+    <p>Renders the html with specified data. 
+Supports Handelbars engine or lodash for deeper level binding.</p>
 </div>
 
 
@@ -420,7 +421,7 @@ $('#tpl').bindData({name: 'Bendy'}, 'container');
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>targetId</code></td>
             
 
             <td class="type">
@@ -926,7 +927,7 @@ $('p').highlightText('e');
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Tue Mar 13 2018 21:19:41 GMT+0800 (CST)
+    Generated  on Wed Mar 14 2018 19:11:29 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>

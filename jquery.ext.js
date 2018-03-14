@@ -147,10 +147,11 @@
         },
 
         /**
-         * Renders the html with specified data. Supports Handelbars engine just include handlebars.js
+         * Renders the html with specified data. 
+         * Supports Handelbars engine or lodash for deeper level binding.
          * @function external:"jQuery.fn"#bindData
          * @param {object} data - The data model used to bind.
-         * @param {targetId=} - The id of target element which is used to include the html bound data.
+         * @param {targetId=} targetId - The id of target element which is used to include the html bound data.
          * @example
          * $('<h1>{{name}}</h1>').bindData({name: 'Bendy'});
          * // => '<h1>Bendy</h1>'
@@ -165,17 +166,27 @@
         bindData: function(data, targetId) {
             var templateHtml = $(this).html();
             var html = templateHtml;
-            if (typeof Handlebars === 'undefined') {
-                var keys = Object.keys(data);
-                for (var idx = 0; idx < keys.length; idx++) {
-                    var key = keys[idx];
-                    html = html.replace('{{' + key + '}}', data[key]);
-                }
-
-                html = html.replace(/\{\{.+\}\}/g, '');
-            } else {
+            if (typeof Handlebars !== 'undefined') {
+                // Handlebars
                 var compile = Handlebars.compile(templateHtml);
                 html = compile(data);
+            } else {
+                if (typeof _ !== 'undefined') {
+                    // use lodash to parse the variables
+                    var binds = html.match(/{{[^}]+}}/g);
+                    _.forEach(binds, function(bind) {
+                        var key = bind.replace(/[{}]/g, '');
+                        var val = _.get(data, key);
+                        html = html.replace(new RegExp(bind.replace(/([\[\]\.])/g, '\\$1'), 'g'), val||'');
+                    });
+                } else {
+                    var keys = Object.keys(data);
+                    for (var idx = 0; idx < keys.length; idx++) {
+                        var key = keys[idx];
+                        html = html.replace('{{' + key + '}}', data[key]);
+                    }
+                }
+                html = html.replace(/\{\{.+\}\}/g, '');
             }
 
             if (targetId) {

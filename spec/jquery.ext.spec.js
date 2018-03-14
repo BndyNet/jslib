@@ -21,4 +21,22 @@ describe('instance methods:', function() {
         $('#template').bindData(data, 'container');
         expect($('#container').html()).toBe('<h1>Bendy Zhang</h1>');
     });
+
+    describe('under lodash:', function() {
+        beforeEach(function() {
+            _ = require('lodash');
+        });
+
+        it('jQuery.fn.templateRender(data):', function() {
+            $('body').append('<h1 id="me">{{me.name}}{{me.addresses[0]}}{{unknownProperty}}-</h1>');
+            var data = { 
+                me: {
+                    name: 'Bendy', 
+                    addresses: ['hefei', 'china'],
+                }
+            };
+            $('#me').bindData(data);
+            expect($('#me').html()).toBe('Bendyhefei-');
+        });
+    });
 });

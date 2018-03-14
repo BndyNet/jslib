@@ -186,10 +186,11 @@
         },
 
         /**
-         * Renders the html with specified data. Supports Handelbars engine just include handlebars.js
+         * Renders the html with specified data. 
+         * Supports Handelbars engine or lodash for deeper level binding.
          * @function external:"jQuery.fn"#bindData
          * @param {object} data - The data model used to bind.
-         * @param {targetId=} - The id of target element which is used to include the html bound data.
+         * @param {targetId=} targetId - The id of target element which is used to include the html bound data.
          * @example
          * $('&lt;h1>{{name}}&lt;/h1>').bindData({name: 'Bendy'});
          * // => '&lt;h1>Bendy&lt;/h1>'
@@ -204,17 +205,27 @@
         bindData: function(data, targetId) {
             var templateHtml = $(this).html();
             var html = templateHtml;
-            if (typeof Handlebars === 'undefined') {
-                var keys = Object.keys(data);
-                for (var idx = 0; idx &lt; keys.length; idx++) {
-                    var key = keys[idx];
-                    html = html.replace('{{' + key + '}}', data[key]);
-                }
-
-                html = html.replace(/\{\{.+\}\}/g, '');
-            } else {
+            if (typeof Handlebars !== 'undefined') {
+                // Handlebars
                 var compile = Handlebars.compile(templateHtml);
                 html = compile(data);
+            } else {
+                if (typeof _ !== 'undefined') {
+                    // use lodash to parse the variables
+                    var binds = html.match(/{{[^}]+}}/g);
+                    _.forEach(binds, function(bind) {
+                        var key = bind.replace(/[{}]/g, '');
+                        var val = _.get(data, key);
+                        html = html.replace(new RegExp(bind.replace(/([\[\]\.])/g, '\\$1'), 'g'), val||'');
+                    });
+                } else {
+                    var keys = Object.keys(data);
+                    for (var idx = 0; idx &lt; keys.length; idx++) {
+                        var key = keys[idx];
+                        html = html.replace('{{' + key + '}}', data[key]);
+                    }
+                }
+                html = html.replace(/\{\{.+\}\}/g, '');
             }
 
             if (targetId) {
@@ -237,7 +248,7 @@
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Tue Mar 13 2018 21:19:41 GMT+0800 (CST)
+    Generated  on Wed Mar 14 2018 19:11:29 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>
