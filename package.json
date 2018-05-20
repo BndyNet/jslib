@@ -1,8 +1,8 @@
 {
-  "name": "jslib",
-  "version": "1.0.0",
-  "description": "Javascript Library",
-  "main": "main.js",
+  "name": "@bndynet/jslib",
+  "version": "1.0.52",
+  "description": "JavaScript Library",
+  "keywords": ["javascript", "jquery", "lodash", "AngularJS", "markdown editor"],
   "scripts": {
     "doc": "jsdoc src/*.js  -c config/jsdoc.json --readme README.md",
     "build": "npm run doc && uglifyjs src/header.js src/common.js src/lodash.ext.js src/jquery.ext.js src/angular.ext.js  -o dist/jslib.min.js -c -m --comments '/^\/*!/' --source-map",
@@ -13,19 +13,21 @@
     "url": "git+https://github.com/bndynet/jslib.git"
   },
   "author": "Bendy Zhang",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bndynet/jslib/issues"
   },
   "homepage": "https://github.com/bndynet/jslib#readme",
-  "devDependencies": {
-    "docdash": "^0.4.0",
-    "editor.md": "^1.5.0",
-    "jasmine": "^2.9.0",
-    "jquery": "^3.3.1",
-    "jsdoc": "^3.5.5",
-    "jsdom": "^11.6.2",
+  "dependencies": {
     "lodash": "^4.17.5",
+    "jquery": "^3.3.1",
+    "editor.md": "^1.5.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.9.0",
+    "jsdoc": "^3.5.5",
+    "docdash": "^0.4.0",
+    "jsdom": "^11.6.2",
     "uglify-js": "^3.3.27"
   }
 }

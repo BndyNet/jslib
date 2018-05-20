@@ -1,4 +1,4 @@
-# Javascript Library 
+# JavaScript Library 
 
 Provides utils for jQuery, AngularJS, Bootstrap and so on. 
 [[Docs]](https://bndynet.github.io/jslib/docs/)
@@ -20,5 +20,5 @@ Provides utils for jQuery, AngularJS, Bootstrap and so on.
 
 ## Commands
 
-- `npm text` - run unit tests
+- `npm test` - run unit tests
 - `npm run build` - generate documentations and compress js files
