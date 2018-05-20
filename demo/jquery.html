@@ -8,7 +8,7 @@
             font-size: 13px;
         }
     </style>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> -->
     <script src="../common.js"></script>
     <script src="../jquery.ext.js"></script>
 </head>
@@ -36,14 +36,41 @@
         </div>
     </section>
 
+    <section>
+        <link rel="stylesheet" type="text/css" href="../node_modules/editor.md/css/editormd.min.css" />
+        <script src="../node_modules/editor.md/editormd.min.js"></script>
+        <h1>
+            Markdown Editor
+            <button id="btnMdPrint">Print Markdown and Html to Console</button>
+        </h1>
+        <div>
+            <div id="mdEditor"></div>
+        </div>
+        <script>
+			var testEditor;
+
+            $(function() {
+                var editorOptions = {
+                    path    : "../node_modules/editor.md/lib/",
+                    placeholder : "Here to code Markdown",
+                };
+                var editor = $("#mdEditor").mdEditor(editorOptions);
+                $('#btnMdPrint').on('click', function() {
+                    console.info('Markdown');
+                    console.info(editor.markdown());
+                    console.info('Html');
+                    console.info(editor.html());
+                });
+            });
+        </script>
+    </section>
 
     <script>
-        console.info('$.ajaxAll');
-        $.ajaxAll($.get('http://bndy.net'), $.get('http://bndy.net/api')).then(function (values) {
-
-        }, function (errors) {
-            console.error(errors);
-        });
+        // console.info('$.ajaxAll');
+        // $.ajaxAll($.get('http://bndy.net'), $.get('http://bndy.net/api')).then(function (values) {
+        // }, function (errors) {
+        //     console.error(errors);
+        // });
     </script>
 </body>
 

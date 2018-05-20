@@ -196,5 +196,48 @@
             }
             return html;
         },
+
+        /**
+         * Renders a Markdown Editor using editor.md
+         * @function external:"jQuery.fn"#mdEditor
+         * @param {object} options - The options for editor.md
+         * @returns {object} An instance of editormd and attached `html()`, `markdown()` methods.
+         * @example
+         * <div id="mdEditorDiv"></div>
+         * 
+         * var editor = $('#mdEditorDiv').mdEditor({
+         *      with: '50%',                                    // default 100%
+         *      height: 400,                                    // default 640
+         *      path: '../node_modules/editor.md/lib/'          // required, the path which includes all dependencies
+         * });
+         * editor.html();       // get html content
+         * editor.markdown();   // get markdown content
+         */
+        mdEditor: function(options) {
+            var id = $(this).attr('id');
+            if (!id) {
+                throw new Error('Not found element or No `id` defined for editor.md.');
+            }
+            if (!options.path) {
+                throw new Error('Please specify `path` value for editor.md dependencies folder in `options`. `options` example: {path: `../node_modules/editor.md/lib/`}');
+            }
+            if (!editormd) {
+                throw new Error('Requires editor.md (http://pandao.github.io/editor.md/)');
+            }
+
+            var defaultOptions = {
+                width   : "100%",
+                height  : 640,
+                syncScrolling : "single",
+                saveHTMLToTextarea : true,
+            };
+            options = $.extend({}, defaultOptions, options);
+            var editor = editormd(id, options); 
+            return $.extend(editor, {
+                originHtml: editor.getHTML,
+                markdown: editor.getMarkdown,
+                html: editor.getPreviewedHTML,
+            });
+        },
     });
 })(jQuery);
