@@ -21,4 +21,4 @@ Provides utils for jQuery, AngularJS, Bootstrap and so on.
 ## Commands
 
 - `npm text` - run unit tests
-- `npm run doc` - generate documentations
+- `npm run build` - generate documentations and compress js files

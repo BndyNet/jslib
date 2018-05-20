@@ -4,7 +4,8 @@
   "description": "Javascript Library",
   "main": "main.js",
   "scripts": {
-    "doc": "jsdoc *.js  -c config/jsdoc.json --readme README.md",
+    "doc": "jsdoc src/*.js  -c config/jsdoc.json --readme README.md",
+    "build": "npm run doc && uglifyjs src/header.js src/common.js src/lodash.ext.js src/jquery.ext.js src/angular.ext.js  -o dist/jslib.min.js -c -m --comments '/^\/*!/' --source-map",
     "test": "jasmine"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "jquery": "^3.3.1",
     "jsdoc": "^3.5.5",
     "jsdom": "^11.6.2",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "uglify-js": "^3.3.27"
   }
 }

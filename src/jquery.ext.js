@@ -7,7 +7,7 @@
 
 'use strict';
 
-(function ($) {
+;(function ($) {
     //==================================================================
     /**
      * @external jQuery
@@ -150,6 +150,7 @@
          * Renders the html with specified data. 
          * Supports Handelbars engine or lodash for deeper level binding.
          * @function external:"jQuery.fn"#bindData
+         * @requires {@link https://handlebarsjs.com/|handlebars} or {@link https://lodash.com/|lodash}
          * @param {object} data - The data model used to bind.
          * @param {targetId=} targetId - The id of target element which is used to include the html bound data.
          * @example
@@ -198,9 +199,10 @@
         },
 
         /**
-         * Renders a Markdown Editor using editor.md
+         * Renders a Markdown Editor using editor.md.
          * @function external:"jQuery.fn"#mdEditor
-         * @param {object} options - The options for editor.md
+         * @requires {@link https://pandao.github.io/editor.md/|editor.md}
+         * @param {object} options - The options for editor.md. For example: { width: '50%', height: 300, path: '../node_modules/editor.md/lib/' }
          * @returns {object} An instance of editormd and attached `html()`, `markdown()` methods.
          * @example
          * <div id="mdEditorDiv"></div>

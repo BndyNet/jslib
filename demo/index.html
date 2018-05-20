@@ -8,9 +8,8 @@
             font-size: 13px;
         }
     </style>
-    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script> -->
-    <script src="../common.js"></script>
-    <script src="../jquery.ext.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="../dist/jslib.min.js"></script>
 </head>
 
 <body>
@@ -66,11 +65,11 @@
     </section>
 
     <script>
-        // console.info('$.ajaxAll');
-        // $.ajaxAll($.get('http://bndy.net'), $.get('http://bndy.net/api')).then(function (values) {
-        // }, function (errors) {
-        //     console.error(errors);
-        // });
+        console.info('$.ajaxAll');
+        $.ajaxAll($.get('http://bndy.net'), $.get('http://bndy.net/api')).then(function (values) {
+        }, function (errors) {
+            console.error(errors);
+        });
     </script>
 </body>
 
