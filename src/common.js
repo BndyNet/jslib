@@ -1,3 +1,5 @@
+var linkDoc = 'https://bndynet.github.io/jslib/docs/';
+
 /**
  * Native functions
  * @author Bendy Zhang <zb@bndy.net>
@@ -378,15 +380,22 @@ String.prototype.title2Url = function() {
  * Converts markdown text to html.
  * @function external:String#md2Html
  * @since 1.0.53
- * @requires {@link http://showdownjs.com/|Showdown}
+ * @requires {@link http://showdownjs.com/|Showdown} or {@link https://github.com/markedjs/marked/|marked}
  * @returns {string} The html text.
  * @example
  * '## Hello **World**'.md2Html();
  */
 String.prototype.md2Html = function() {
     if (this) {
-        var converter = new showdown.Converter();
-        return converter.makeHtml(this);
+        if (marked) {
+            return marked(this);
+        }
+        if (showdown) {
+            var converter = new showdown.Converter();
+            return converter.makeHtml(this);
+        }
+
+        throw 'No markdown parser specified. Such as Showdown or marked. Detail at ' + linkDoc;
     }
 
     return '';

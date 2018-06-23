@@ -37,7 +37,9 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>var linkDoc = 'https://bndynet.github.io/jslib/docs/';
+
+/**
  * Native functions
  * @author Bendy Zhang &lt;zb@bndy.net>
  * @copyright BNDY.NET 2017
@@ -417,15 +419,22 @@ String.prototype.title2Url = function() {
  * Converts markdown text to html.
  * @function external:String#md2Html
  * @since 1.0.53
- * @requires {@link http://showdownjs.com/|Showdown}
+ * @requires {@link http://showdownjs.com/|Showdown} or {@link https://github.com/markedjs/marked/|marked}
  * @returns {string} The html text.
  * @example
  * '## Hello **World**'.md2Html();
  */
 String.prototype.md2Html = function() {
     if (this) {
-        var converter = new showdown.Converter();
-        return converter.makeHtml(this);
+        if (marked) {
+            return marked(this);
+        }
+        if (showdown) {
+            var converter = new showdown.Converter();
+            return converter.makeHtml(this);
+        }
+
+        throw 'No markdown parser specified. Such as Showdown or marked. Detail at ' + linkDoc;
     }
 
     return '';
@@ -441,7 +450,7 @@ String.prototype.md2Html = function() {
 <br class="clear">
 
 <footer style="font-size: .7rem; color: #aaa; padding-left:20px; line-height:1rem;">
-    Generated  on Thu Jun 28 2018 15:45:38 GMT+0800 (CST)
+    Generated  on Thu Jun 28 2018 20:52:05 GMT+0800 (CST)
     <br />
     Powered by <a href="http://bndy.net" target="_blank" style="color:red;">BNDY.NET</a>, Author: <a href="mailto:zb@bndy.net">Bendy Zhang</a>
 </footer>
