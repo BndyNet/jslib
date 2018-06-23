@@ -373,3 +373,21 @@ String.prototype.title2Url = function() {
     }
     return '';
 };
+
+/**
+ * Converts markdown text to html.
+ * @function external:String#md2Html
+ * @since 1.0.53
+ * @requires {@link http://showdownjs.com/|Showdown}
+ * @returns {string} The html text.
+ * @example
+ * '## Hello **World**'.md2Html();
+ */
+String.prototype.md2Html = function() {
+    if (this) {
+        var converter = new showdown.Converter();
+        return converter.makeHtml(this);
+    }
+
+    return '';
+}
