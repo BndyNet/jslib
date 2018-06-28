@@ -1,11 +1,17 @@
 {
   "name": "@bndynet/jslib",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "description": "JavaScript Library",
-  "keywords": ["javascript", "jquery", "lodash", "AngularJS", "markdown editor"],
+  "keywords": [
+    "javascript",
+    "jquery",
+    "lodash",
+    "AngularJS",
+    "markdown editor"
+  ],
   "scripts": {
     "doc": "jsdoc src/*.js  -c config/jsdoc.json --readme README.md",
-    "build": "npm run doc && uglifyjs src/header.js src/common.js src/lodash.ext.js src/jquery.ext.js src/angular.ext.js  -o dist/jslib.min.js -c -m --comments '/^\/*!/' --source-map",
+    "build": "npm run doc && uglifyjs src/header.js src/common.js src/lodash.ext.js src/jquery.ext.js src/angular.ext.js  -o dist/jslib.min.js -c -m --comments '/^/*!/' --source-map",
     "test": "jasmine"
   },
   "repository": {
