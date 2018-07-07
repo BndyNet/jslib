@@ -117,7 +117,6 @@
                     display: 'table',
                     width: parent.outerWidth(),
                     height: parent.outerHeight(),
-                    backgroundColor: 'rgba(255,255,255, .8)',
                     textAlgin: 'center',
                 });
                 parent.append(elem);
